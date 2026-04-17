@@ -5,10 +5,10 @@ import "./cards.css";
 function Cards() {
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      {products.map((item) => (
+      {products.filter(item => item.id <= 3).map((item) => (
         <div
           key={item.id}
-          className="flex flex-col rounded shadow p-4 hover:shadow-lg transition"
+          className="flex flex-col rounded shadow p-4 hover:shadow-lg transition hover:cursor-pointer"
         >
           <img
             src={item.image}

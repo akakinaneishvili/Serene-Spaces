@@ -1,4 +1,6 @@
-const navbar = [
+
+
+const Navbar = [
       {
         name: "Home",
         path: "/"
@@ -18,4 +20,4 @@ const navbar = [
     ]
 
   
-  export default navbar;
+  export default Navbar;

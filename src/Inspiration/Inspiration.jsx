@@ -2,7 +2,7 @@ import Inspiration_1 from "./Inspiration img/Rectangle 49.svg"
 import Inspiration_2 from "./Inspiration img/Rectangle 50.svg"
 import Inspiration_3 from "./Inspiration img/Rectangle 51.svg"
 import Inspiration_4 from "./Inspiration img/Rectangle 52.svg"
-function Inspiration(){
+function Inspiration (){
     return (
 <>
 
