@@ -1,4 +1,5 @@
 import React from "react";
+import Arrow from "./category img/Arrow Right 1.svg"
 import menu_Category from "./menu_Category";
 
 function MenuCategory() {
@@ -31,7 +32,11 @@ function MenuCategory() {
                          hover:bg-[rgba(140,125,110,0.8)]
                          hover:shadow-md"
         >
-          All Category
+         <nav className="flex justify-between w-full  items-center  text-2xl font-medium ">
+                     All Category
+                    <img src={Arrow} alt="" /> 
+                 
+            </nav>
         </button>
       </div>
     </div>

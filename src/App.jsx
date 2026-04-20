@@ -1,5 +1,5 @@
 import Rectangle from "./assets/Rectangle 1.svg";
-import Vector from "./assets/Vector.svg";
+
 import Arrow from "./assets/Arrow.svg";
 import ArrowDown from "./assets/Arrow Down 2.svg";
 
@@ -7,13 +7,14 @@ import "./App.css";
 import Cards from "./cards/Cards";
 import Inspiration from "./Inspiration/Inspiration";
 
-import navbarData from "./navbar/navbar"; 
+ 
 import SmallCards from "./cards/SmallCards";
 import CategoryMenuComponent from "./category/Menu";
 import Popproducts from "./products/PopularProducts";
 
 import bgimg from "./assets/BgImg.svg"
 import Footer from "./components/Footer";
+import Header from "./components/Header";
 
 function App() {
   return (
@@ -23,38 +24,7 @@ function App() {
         style={{ backgroundImage: `url(${Rectangle})` }}
         
       >
-        <div className="absolute top-10 left-1/2 transform -translate-x-1/2 flex w-375 h-20 justify-between items-center bg-[rgba(163,148,133,0.8)] rounded-2xl p-4">
-          <h2 className="text-black text-2xl font-bold">Serene Spaces</h2>
-
-          <nav>
-            <ul className="flex gap-6 justify-around items-center text-black w-125 h-11">
-              
-              {navbarData.map((item) => (
-                <li
-                  key={item.path}
-                  className="cursor-pointer h-9 flex items-center justify-center px-3 transition-colors duration-300 rounded-2xl hover:bg-[rgba(140,125,110,0.8)] hover:shadow-md"
-                >
-                  {item.name}
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="flex gap-3 items-center">
-            <div className="rounded-2xl px-4 py-2 inline-flex items-center justify-center transition-all duration-300 hover:bg-[rgba(140,125,110,0.8)] hover:shadow-md">
-              <img src={Vector} alt="Vector Icon" className="w-5 h-5" />
-            </div>
-
-            <button className="text-black px-4 py-2 rounded-2xl inline-flex items-center justify-center transition-all duration-300 hover:bg-[rgba(140,125,110,0.8)] hover:shadow-md">
-              EN
-            </button>
-            <button className="bg-[rgba(163,148,133,0.8)] border border-black text-black px-4 py-2 rounded-xl">
-              Contact Us
-            </button>
-          </div>
-          
-        </div>
-
+      <Header/>
 
         <div className="absolute bottom-10 left-80 text-7xl text-white"> We Craft Your Dream Home</div>
  
@@ -82,13 +52,13 @@ function App() {
             </p>
 
             <div className="flex justify-between w-87.5">
-              <button className="flex items-center justify-between w-25 h-10 border border-black rounded-xl px-3">
+              <button className="flex items-center justify-between w-25 h-10 border border-black rounded-xl px-3 hover:bg-[rgba(140,125,110,0.8)]">
                 Prize <img src={ArrowDown} alt="Arrow Down" />
               </button>
-              <button className="flex items-center justify-between w-25 h-10 border border-black rounded-xl px-3">
+              <button className="flex items-center justify-between w-25 h-10 border border-black rounded-xl px-3 hover:bg-[rgba(140,125,110,0.8)]">
                 Date <img src={ArrowDown} alt="Arrow Down" />
               </button>
-              <button className="flex items-center justify-between w-32.5 h-10 border border-black rounded-xl px-3">
+              <button className="flex items-center justify-between w-32.5 h-10 border border-black rounded-xl px-3 hover:bg-[rgba(140,125,110,0.8)]">
                 Relevance <img src={ArrowDown} alt="Arrow Down" />
               </button>
             </div>
