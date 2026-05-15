@@ -1,27 +1,47 @@
+import { useEffect, useState } from "react";
+import { API_URL } from "../config";
+import { Link } from "react-router-dom";
 
-import products from "./products"
-import "./cards.css";
+function Cards({props}) {
+  const [prod, setProd] = useState([]);
 
-function Cards() {
+  useEffect(() => {
+   const ProdCards =  async () => {
+      const prodInfo = await fetch(`${API_URL}/products`);
+      const data = await prodInfo.json();
+      setProd(data)
+    };
+    ProdCards();
+  }, []);
+
+   const displayData = props ? prod.slice(0, props) : prod;
+
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-      {products.filter(item => item.id <= 3).map((item) => (
-        <div
-          key={item.id}
-          className="flex flex-col rounded shadow p-4 hover:shadow-lg transition hover:cursor-pointer"
+    
+
+   <>  
+      {displayData.map((item) => (
+     <Link 
+          to={`/product/${item.id}`} 
+          key={item.id} 
+          className="no-underline block h-full" 
         >
-          <img
-            src={item.image}
-            alt={item.name}
-            className="w-110 h-130 object-cover rounded"
-          />
-          <p className="mt-4 text-2xl text-black font-bold">{item.name}</p>
-          <p className="mt-2 text-2xl font-bold text-[rgba(188,95,19,1)]">
-            {item.price}
-          </p>
-        </div>
+          <div
+            className="flex flex-col h-full rounded shadow p-4 hover:shadow-lg transition hover:cursor-pointer"
+          >
+            <img
+              src={item.image}
+              alt={item.name}
+              className="w-110 object-cover rounded"
+            />
+            <p className="mt-4 text-2xl text-black font-bold">{item.name}</p>
+            <p className="mt-2 text-2xl font-bold text-[rgba(188,95,19,1)]">
+              {item.price}
+            </p>
+          </div>
+        </Link>
       ))}
-    </div>
+    </>
   );
 }
 

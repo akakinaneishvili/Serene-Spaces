@@ -1,0 +1,203 @@
+{
+  "navbar": [
+    {
+      "id": 1,
+      "name": "Home",
+      "path": "/"
+    },
+    {
+      "id": 2,
+      "name": "Collections",
+      "path": "/collections"
+    },
+    {
+      "id": 3,
+      "name": "Inspiration",
+      "path": "/inspiration"
+    },
+    {
+      "id": 4,
+      "name": "About Us",
+      "path": "/about"
+    }
+  ],
+
+
+  "menuCategory" : [
+
+  { "id": 1,
+    "image": "http://localhost:3001/Component1.svg", 
+    "name": "Chairs"
+   },
+
+  { "id": 2, 
+    "image": "http://localhost:3001/Component_1.svg", 
+    "name": "Dressers" 
+  },
+
+  { "id": 3, 
+    "image": "http://localhost:3001/Component_2.svg", 
+    "name": "Outdoor" 
+  },
+
+  { "id": 4, 
+    "image": "http://localhost:3001/Component_3.svg", 
+    "name": "Rugs" 
+  },
+
+  { "id": 5, 
+    "image": "http://localhost:3001/Component_4.svg", 
+    "name": "Sofas" 
+  },
+
+  { "id": 6, 
+    "image": "http://localhost:3001/Component_5.svg", 
+    "name": "Tables" 
+  }
+],
+
+  "products": [
+  {
+    "id": 1,
+    "name": "Dining Room Set",
+    "category": "Tables",
+    "price": "$1285.00",
+    "image": "http://localhost:3001/Rectangle6.svg",
+    "description": "This is a short description for product 1."
+  },
+  {
+    "id": 2,
+    "name": "Bed Room Set",
+    "category": "Dressers",
+    "price": "$2290.00",
+    "image": "http://localhost:3001/Rectangle7.svg",
+    "description": "This is a short description for product 2."
+  },
+  {
+    "id": 3,
+    "name": "Living Room Set",
+    "category": "Sofas",
+    "price": "$3410.00",
+    "image": "http://localhost:3001/Rectangle8.svg",
+    "description": "This is a short description for product 3."
+  },
+  {
+    "id": 4,
+    "name": "Modern Luxe Chair",
+    "category": "Chairs",
+    "price": "$214.00",
+    "image": "http://localhost:3001/Rectangle12.svg",
+    "description": "This is a short description for product 4."
+  },
+  {
+    "id": 5,
+    "name": "Noir Dresser",
+    "category": "Dressers",
+    "price": "$399.00",
+    "image": "http://localhost:3001/Rectangle65.svg",
+    "description": "This is a short description for product 5."
+  },
+  {
+    "id": 6,
+    "name": "Luxe Comfort Rug",
+    "category": "Rugs",
+    "price": "$175.00",
+    "image": "http://localhost:3001/Rectangle66.svg",
+    "description": "This is a short description for product 6."
+  },
+  {
+    "id": 7,
+    "name": "Harmony Table",
+    "category": "Tables",
+    "price": "$115.00",
+    "image": "http://localhost:3001/Rectangle87.svg",
+    "description": "This is a short description for product 7."
+  },
+  {
+    "id": 8,
+    "name": "Crystal Hive Sofa",
+    "category": "Sofas",
+    "price": "$510.00",
+    "image": "http://localhost:3001/Rectangle88.svg",
+    "description": "This is a short description for product 8."
+  },
+  {
+    "id": 9,
+    "name": "Cove Coffee Sofa",
+    "category": "Sofas",
+    "price": "$600.00",
+    "image": "http://localhost:3001/Rectangle95.svg",
+    "description": "This is a short description for product 9."
+  },
+  {
+    "id": 10,
+    "name": "Artisan Highboy",
+    "category": "Dressers",
+    "price": "$330.00",
+    "image": "http://localhost:3001/Rectangle96.svg",
+    "description": "This is a short description for product 10."
+  },
+  {
+    "id": 11,
+    "name": "Opulent Chair",
+    "category": "Chairs",
+    "price": "$185.00",
+    "image": "http://localhost:3001/Rectangle97.svg",
+    "description": "This is a short description for product 11."
+  },
+  {
+    "id": 12,
+    "name": "Tradition Wool Rug",
+    "category": "Rugs",
+    "price": "$220.00",
+    "image": "http://localhost:3001/Rectangle86.svg",
+    "description": "This is a short description for product 12."
+  }
+],
+  "product": [
+    { 
+     "id": 1,
+     "image":"http://localhost:3001/Rectangle01.svg",
+     "name": "ChaiPlush Comfort Chairrs",
+     "price": "$185.00" 
+  },
+
+  {
+       "id": 2,
+       "image":"http://localhost:3001/Rectangle02.svg",
+       "name": "DrModern Marvel Sofaessers", 
+       "price": "$385.00" 
+  },
+
+  { 
+    "id": 3, 
+    "image":"http://localhost:3001/Rectangle03.svg", 
+    "name": "OutdHeritage Oak Chestoor",
+    "price": "$335.00" 
+  },
+  { 
+    "id": 4, 
+    "image": "http://localhost:3001/Rectangle04.svg", 
+    "name": "RuUrban Chic Tablegs", 
+    "price": "$89.00" }
+    
+  ],
+  "InspirationImg":[
+    {
+      "id": 1,
+      "image": "http://localhost:3001/Inspiration1.svg"
+    },
+      {
+      "id": 2,
+      "image": "http://localhost:3001/Inspiration2.svg"
+    },
+      {
+      "id": 3,
+      "image": "http://localhost:3001/Inspiration3.svg"
+    },
+      {
+      "id": 4,
+      "image": "http://localhost:3001/Inspiration4.svg"
+    }
+  ]
+}

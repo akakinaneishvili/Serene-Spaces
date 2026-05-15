@@ -1,23 +1,51 @@
-import products from "./products";
+import { useState, useEffect } from "react";
+import { API_URL } from "../config";
+import { useSearchParams } from "react-router-dom";
+import Card from "./Card";
 
 function SmallCards() {
+  const [prod, setProd] = useState([]);
+  const [searchParams] = useSearchParams();
+
+  const activeCategory = searchParams.get("category");
+
+  useEffect(() => {
+    const getProdCards = async () => {
+      try {
+        const response = await fetch(`${API_URL}/products`);
+        const data = await response.json();
+        setProd(data);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    getProdCards();
+  }, []);
+
+  const filteredProducts = prod.filter((item) => {
+    if (!activeCategory) return true;
+    return item.category === activeCategory;
+  });
+
   return (
-    <div className=" w-247.5 grid grid-cols-2 md:grid-cols-4 gap-6 ">
-      {products
-        .filter(item => item.id > 4)
-        .map((item) => (
-          <div key={item.id} className="  rounded-lg p-4 shadow-sm hover:shadow-lg hover:cursor-pointer">
-            <img
-              src={item.image}
-              alt={item.name}
-              className="w-full h-40 object-cover rounded-md"
-            />
-            <p className="mt-3 text-2xl text-black font-bold">{item.name}</p>
-            <p className="mt-2 text-2xl font-bold text-[rgba(188,95,19,1)]">
-              {item.price}
-            </p>
-          </div>
+    <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        {filteredProducts.map((item) => (
+          <Card
+            key={item.id}
+            id={item.id}
+            image={item.image}
+            name={item.name}
+            price={item.price}
+          />
         ))}
+      </div>
+
+      {filteredProducts.length === 0 && (
+        <div className="text-center py-20 text-gray-400">
+          ამ კატეგორიაში პროდუქტები არ მოიძებნა.
+        </div>
+      )}
     </div>
   );
 }
