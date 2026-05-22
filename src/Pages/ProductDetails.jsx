@@ -1,25 +1,20 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom"; // 1. ამატებ ამას
+import { useParams } from "react-router-dom";
 import { API_URL } from "../config";
 
 function ProductDetails() {
-  const { id } = useParams(); // 2. იღებ ID-ს მისამართის ზოლიდან
+  const { id } = useParams();
   const [product, setProduct] = useState();
 
   useEffect(() => {
     const fetchProduct = async () => {
-      try {
-        const response = await fetch(`${API_URL}/products/${id}`);
-        const data = await response.json();
-        setProduct(data);
-      } catch (error) {
-        console.error("შეცდომა:", error);
-      }
+      const response = await fetch(`${API_URL}/products/${id}`);
+      const data = await response.json();
+      setProduct(data);
     };
     fetchProduct();
-  }, [id]); // 3. უთითებ, რომ ID-ზეა დამოკიდებული
+  }, [id]);
 
-  // 4. სანამ მონაცემები მოვა, ეს იცავს კოდს "გაფუჭებისგან"
   if (!product) {
     return (
       <div className="min-h-screen pt-60 text-center text-2xl">

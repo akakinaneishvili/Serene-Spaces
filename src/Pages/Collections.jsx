@@ -3,29 +3,33 @@ import { API_URL } from "../config";
 import { Link, useSearchParams } from "react-router-dom";
 import CategotyMenu from "../components/CategotyMenu";
 import CategotyCollections from "../components/CategotyCollections";
+import Search from "../components/search";
 
 function Collections() {
   const [prod, setProd] = useState([]);
   const [searchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState("");
 
   const activeCategory = searchParams.get("category");
 
   useEffect(() => {
     const ProdCards = async () => {
-      try {
-        const prodInfo = await fetch(`${API_URL}/products`);
-        const data = await prodInfo.json();
-        setProd(data);
-      } catch (error) {
-        console.error("Error fetching products:", error);
-      }
+      const prodInfo = await fetch(`${API_URL}/products`);
+      const data = await prodInfo.json();
+      setProd(data);
     };
+
     ProdCards();
   }, []);
 
   const filteredProducts = prod.filter((item) => {
-    if (!activeCategory) return true;
-    return item.category === activeCategory;
+    const matchesCategory = !activeCategory || item.category === activeCategory;
+
+    const matchesSearch = item.name
+      .toLowerCase()
+      .includes(searchQuery.toLowerCase());
+
+    return matchesCategory && matchesSearch;
   });
 
   return (
@@ -45,8 +49,8 @@ function Collections() {
 
           <div className="w-2xl h-0.5 bg-[rgba(188,95,19,0.3)] mt-20 mb-20"></div>
         </div>
+        <Search query={searchQuery} onSearchChange={setSearchQuery} />
 
-        {/* კატეგორიების მენიუ */}
         <CategotyCollections />
 
         <div className="max-w-7xl mx-auto px-4 mt-12">

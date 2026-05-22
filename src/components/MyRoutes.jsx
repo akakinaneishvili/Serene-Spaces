@@ -1,25 +1,25 @@
-import { Route, Routes } from "react-router-dom"; // Router აქ არ გჭირდება, ის ჩვეულებრივ index.js-შია
-import Leyout from "../leyout/Leyout"; 
+import { Route, Routes } from "react-router-dom";
+import Leyout from "../leyout/Leyout";
 import Home from "../pages/Home";
 import Collections from "../pages/Collections";
-import InspirationPage from "../pages/InspirationPage";
+import Shopping from "../pages/Shopping";
 import About from "../pages/About";
-import ProductDetails from "../pages/ProductDetails"; // აუცილებლად დაამატე ეს იმპორტი
-
+import ProductDetails from "../pages/ProductDetails";
+import Registration from "../components/Registration";
+import LogIn from "./LogIn";
 function MyRoutes() {
   return (
     <Routes>
       <Route path="/" element={<Leyout />}>
-      
-        <Route index element={<Home />} /> 
+        <Route index element={<Home />} />
 
-        
         <Route path="product/:id" element={<ProductDetails />} />
-        
-      
+
         <Route path="collections" element={<Collections />} />
-        <Route path="inspiration" element={<InspirationPage />} />
+        <Route path="Shopping" element={<Shopping />} />
         <Route path="About" element={<About />} />
+        <Route path="Registration" element={<Registration />} />
+        <Route path="LogIn" element={<LogIn />} />
       </Route>
     </Routes>
   );
