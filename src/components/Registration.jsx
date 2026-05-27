@@ -27,7 +27,7 @@ function Registration() {
   }
 
   return (
-    <div className="w-full bg-[#fff3dd] pt-48 pb-16 px-4 flex justify-center items-center">
+    <div className="w-full min-h-screen bg-[#fff3dd] pt-48 pb-16 px-4 flex justify-center items-center">
       <form
         onSubmit={handleSubmmit}
         className="bg-white p-10 rounded-[2.5rem] shadow-xl shadow-orange-900/5 w-full max-w-xl flex flex-col gap-6 border border-[#f3e0c0]"
