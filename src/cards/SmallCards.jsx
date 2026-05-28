@@ -42,7 +42,7 @@ function SmallCards() {
       </div>
 
       {filteredProducts.length === 0 && (
-        <div className="text-center py-20 text-gray-400">
+        <div className="text-center py-20 text-gray-400 dark:text-slate-500 transition-colors duration-300">
           ამ კატეგორიაში პროდუქტები არ მოიძებნა.
         </div>
       )}

@@ -34,14 +34,14 @@ function Collections() {
 
   return (
     <>
-      <div className="pt-36 pb-20 bg-[rgb(252,243,231)]">
+      <div className="pt-36 pb-20 bg-[rgb(252,243,231)] dark:bg-slate-950 transition-colors duration-300">
         <div className="flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl text-center mb-24 tracking-tight mt-20">
+          <h1 className="text-5xl md:text-7xl text-center mb-24 tracking-tight mt-20 text-black dark:text-white transition-colors">
             Our Collections
           </h1>
 
           <div className="flex flex-col items-center text-center">
-            <p className="max-w-[45ch] text-xl md:text-2xl leading-loose font-light text-gray-800 italic mb-8">
+            <p className="max-w-[45ch] text-xl md:text-2xl leading-loose font-light text-gray-800 dark:text-slate-300 italic mb-8 transition-colors">
               Discover thoughtfully curated furniture pieces that transform your
               living spaces into sanctuaries of comfort and timeless elegance
             </p>
@@ -61,7 +61,7 @@ function Collections() {
                 key={item.id}
                 className="no-underline group"
               >
-                <div className="flex flex-col h-full rounded-lg shadow-sm p-4 hover:shadow-xl transition-all duration-300 border border-gray-100">
+                <div className="flex flex-col h-full bg-[#fcf3e7] dark:bg-slate-900 rounded-lg shadow-sm p-4 hover:shadow-xl transition-all duration-300 border border-transparent dark:border-slate-800">
                   <div className="w-full h-64 overflow-hidden rounded-md mb-4">
                     <img
                       src={item.image}
@@ -71,7 +71,7 @@ function Collections() {
                   </div>
 
                   <div className="flex flex-col grow">
-                    <p className="text-lg text-gray-900 font-bold line-clamp-2 uppercase h-14">
+                    <p className="text-lg text-gray-900 dark:text-white font-bold line-clamp-2 uppercase h-14 transition-colors">
                       {item.name}
                     </p>
 

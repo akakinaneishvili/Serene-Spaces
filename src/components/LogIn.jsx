@@ -13,11 +13,11 @@ function LogIn() {
 
     console.log(currentData);
 
-    const respons = await fetch(
+    const response = await fetch(
       `${API_URL}/users?firstname=${currentData.firstname}&password=${currentData.password}`,
     );
 
-    const data = await respons.json();
+    const data = await response.json();
     console.log(data);
 
     if (data.length > 0) {
@@ -26,15 +26,16 @@ function LogIn() {
       console.log("მომხმარებელი ვერ მოიძებნა ან პაროლი არასწორია!");
     }
   }
+
   return (
     <>
-      <div className="w-full bg-[#fff3dd] min-h-screen  pb-16 px-4 flex justify-center items-center">
+      <div className="w-full bg-[#fff3dd] dark:bg-slate-950 min-h-screen pb-16 px-4 flex justify-center items-center transition-colors duration-300">
         <form
           onSubmit={handleLogin}
-          className="bg-white p-10 rounded-[2.5rem] shadow-xl shadow-orange-900/5 w-full max-w-md flex flex-col gap-6 border border-[#f3e0c0]"
+          className="bg-white dark:bg-slate-900 p-10 rounded-[2.5rem] shadow-xl shadow-orange-900/5 w-full max-w-md flex flex-col gap-6 border border-[#f3e0c0] dark:border-slate-800 transition-colors duration-300"
         >
           <div className="text-center mb-2">
-            <h2 className="text-4xl font-serif text-[#1e293b] mb-2 tracking-tight">
+            <h2 className="text-4xl font-serif text-[#1e293b] dark:text-white mb-2 tracking-tight">
               Welcome Back
             </h2>
             <div className="w-12 h-1 bg-[#bc5f13] mx-auto rounded-full opacity-60"></div>
@@ -49,7 +50,7 @@ function LogIn() {
                 name="firstname"
                 placeholder="John"
                 required
-                className="bg-[#fafafa] border border-[#e2e8f0] px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light"
+                className="bg-[#fafafa] dark:bg-slate-800 border border-[#e2e8f0] dark:border-slate-700 px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light dark:text-white"
               />
             </div>
 
@@ -63,7 +64,7 @@ function LogIn() {
                 placeholder="••••••••"
                 required
                 minLength={6}
-                className="bg-[#fafafa] border border-[#e2e8f0] px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light"
+                className="bg-[#fafafa] dark:bg-slate-800 border border-[#e2e8f0] dark:border-slate-700 px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light dark:text-white"
               />
             </div>
 

@@ -5,7 +5,7 @@ function ScrollToTopButton() {
 
   useEffect(() => {
     const toggleVisibility = () => {
-      if (window.pageYOffset > 300) {
+      if (window.scrollY > 300) {
         setIsVisible(true);
       } else {
         setIsVisible(false);
@@ -27,7 +27,7 @@ function ScrollToTopButton() {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="w-14 h-14 bg-[rgba(188,95,19,1)] text-white rounded-full flex items-center justify-center shadow-lg hover:bg-black transition-all duration-300 hover:-translate-y-2"
+          className="w-14 h-14 bg-[rgba(188,95,19,1)] text-white rounded-full flex items-center justify-center shadow-lg hover:bg-black dark:hover:bg-slate-800 transition-all duration-300 hover:-translate-y-2"
         >
           <svg
             width="24"

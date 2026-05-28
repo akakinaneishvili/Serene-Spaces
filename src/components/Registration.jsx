@@ -27,17 +27,17 @@ function Registration() {
   }
 
   return (
-    <div className="w-full min-h-screen bg-[#fff3dd] pt-48 pb-16 px-4 flex justify-center items-center">
+    <div className="w-full min-h-screen bg-[#fff3dd] dark:bg-slate-950 pt-48 pb-16 px-4 flex justify-center items-center transition-colors duration-300">
       <form
         onSubmit={handleSubmmit}
-        className="bg-white p-10 rounded-[2.5rem] shadow-xl shadow-orange-900/5 w-full max-w-xl flex flex-col gap-6 border border-[#f3e0c0]"
+        className="bg-white dark:bg-slate-900 p-10 rounded-[2.5rem] shadow-xl shadow-orange-900/5 w-full max-w-xl flex flex-col gap-6 border border-[#f3e0c0] dark:border-slate-800 transition-colors duration-300"
       >
         <div className="text-center mb-4">
-          <h2 className="text-4xl font-serif text-[#1e293b] mb-2 tracking-tight">
+          <h2 className="text-4xl font-serif text-[#1e293b] dark:text-white mb-2 tracking-tight">
             Create Profile
           </h2>
           <div className="w-12 h-1 bg-[#bc5f13] mx-auto rounded-full opacity-60"></div>
-          <p className="text-[#64748b] mt-4 font-light italic">
+          <p className="text-[#64748b] dark:text-slate-400 mt-4 font-light italic">
             Please fill in the details below
           </p>
         </div>
@@ -52,7 +52,7 @@ function Registration() {
               name="firstname"
               placeholder="John"
               required
-              className="bg-[#fafafa] border border-[#e2e8f0] px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light"
+              className="bg-[#fafafa] dark:bg-slate-800 border border-[#e2e8f0] dark:border-slate-700 px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light dark:text-white"
             />
           </div>
           <div className="flex flex-col gap-1">
@@ -64,7 +64,7 @@ function Registration() {
               name="lastname"
               placeholder="Doe"
               required
-              className="bg-[#fafafa] border border-[#e2e8f0] px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light"
+              className="bg-[#fafafa] dark:bg-slate-800 border border-[#e2e8f0] dark:border-slate-700 px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light dark:text-white"
             />
           </div>
         </div>
@@ -78,7 +78,7 @@ function Registration() {
             name="email"
             placeholder="john@example.com"
             required
-            className="bg-[#fafafa] border border-[#e2e8f0] px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light"
+            className="bg-[#fafafa] dark:bg-slate-800 border border-[#e2e8f0] dark:border-slate-700 px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light dark:text-white"
           />
         </div>
 
@@ -91,7 +91,7 @@ function Registration() {
             name="phone"
             placeholder="+995 5xx xx xx xx"
             required
-            className="bg-[#fafafa] border border-[#e2e8f0] px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light"
+            className="bg-[#fafafa] dark:bg-slate-800 border border-[#e2e8f0] dark:border-slate-700 px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light dark:text-white"
           />
         </div>
 
@@ -104,7 +104,7 @@ function Registration() {
             name="address"
             placeholder="Tbilisi, Georgia"
             required
-            className="bg-[#fafafa] border border-[#e2e8f0] px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light"
+            className="bg-[#fafafa] dark:bg-slate-800 border border-[#e2e8f0] dark:border-slate-700 px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light dark:text-white"
           />
         </div>
 
@@ -120,7 +120,7 @@ function Registration() {
             minLength={6}
             pattern="^(?=.*[A-Za-z])[A-Za-z0-9]+$"
             title="პაროლი უნდა შეიცავდეს ლათინურ ასოებს"
-            className="bg-[#fafafa] border border-[#e2e8f0] px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light"
+            className="bg-[#fafafa] dark:bg-slate-800 border border-[#e2e8f0] dark:border-slate-700 px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light dark:text-white"
           />
         </div>
 
@@ -134,12 +134,14 @@ function Registration() {
 
       {isSuccessOpen && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50 p-4">
-          <div className="bg-white p-8 rounded-[2rem] max-w-sm w-full text-center shadow-2xl border border-[#f3e0c0] flex flex-col items-center gap-4">
-            <div className="w-16 h-16 bg-green-100 rounded-full flex justify-center items-center text-green-600 text-3xl font-bold">
+          <div className="bg-white dark:bg-slate-900 p-8 rounded-[2rem] max-w-sm w-full text-center shadow-2xl border border-[#f3e0c0] dark:border-slate-800 flex flex-col items-center gap-4 transition-colors duration-300">
+            <div className="w-16 h-16 bg-green-100 dark:bg-green-950/50 rounded-full flex justify-center items-center text-green-600 dark:text-green-400 text-3xl font-bold">
               ✓
             </div>
-            <h3 className="text-2xl font-serif text-[#1e293b]">გილოცავთ!</h3>
-            <p className="text-[#64748b] font-light">
+            <h3 className="text-2xl font-serif text-[#1e293b] dark:text-white">
+              გილოცავთ!
+            </h3>
+            <p className="text-[#64748b] dark:text-slate-400 font-light">
               თქვენ წარმატებით გაიარეთ რეგისტრაცია.
             </p>
             <button

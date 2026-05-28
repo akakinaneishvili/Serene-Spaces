@@ -6,7 +6,7 @@ function Card({ id, image, name, price }) {
   return (
     <Link
       to={productPath}
-      className="flex flex-col h-full rounded-lg p-4 shadow-sm hover:shadow-lg transition-all bg-[#fcf3e7] no-underline group"
+      className="flex flex-col h-full rounded-lg p-4 shadow-sm hover:shadow-lg transition-all bg-[#fcf3e7] dark:bg-slate-900 no-underline group transition-colors duration-300"
     >
       <div className="w-full h-48 overflow-hidden rounded-md">
         <img
@@ -17,7 +17,7 @@ function Card({ id, image, name, price }) {
       </div>
 
       <div className="flex flex-col grow">
-        <p className="mt-3 text-xl text-black font-bold line-clamp-2 uppercase">
+        <p className="mt-3 text-xl text-black dark:text-white font-bold line-clamp-2 uppercase transition-colors duration-300">
           {name}
         </p>
 
