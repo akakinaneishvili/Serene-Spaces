@@ -1,7 +1,7 @@
 import { Route, Routes } from "react-router-dom";
 import Leyout from "../leyout/Leyout";
 import Home from "../pages/Home";
-import Collections from "../pages/Collections";
+import Collections from "../Pages/Collections";
 import Shopping from "../pages/Shopping";
 import About from "../pages/About";
 import ProductDetails from "../pages/ProductDetails";
