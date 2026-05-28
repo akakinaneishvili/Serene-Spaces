@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { API_URL } from "../config";
 import { useSearchParams } from "react-router-dom";
-import Card from "./Card";
+import Card from "./card";
 
 function SmallCards() {
   const [prod, setProd] = useState([]);

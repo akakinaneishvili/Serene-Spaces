@@ -5,8 +5,8 @@ import Collections from "../Pages/Collections";
 import Shopping from "../Pages/Shopping";
 import About from "../Pages/About";
 import ProductDetails from "../Pages/ProductDetails";
-import Registration from "./Registration"; // <-- პირდაპირ იქვე დევს!
-import LogIn from "./LogIn"; // <-- პირდაპირ იქვე დევს!
+import Registration from "./Registration";
+import LogIn from "./LogIn";
 
 function MyRoutes() {
   return (
