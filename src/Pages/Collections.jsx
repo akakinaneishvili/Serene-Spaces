@@ -3,7 +3,7 @@ import { API_URL } from "../config";
 import { Link, useSearchParams } from "react-router-dom";
 import CategotyMenu from "../components/CategotyMenu";
 import CategotyCollections from "../components/CategotyCollections";
-import Search from "../components/search";
+import Search from "../components/Search";
 
 function Collections() {
   const [prod, setProd] = useState([]);
