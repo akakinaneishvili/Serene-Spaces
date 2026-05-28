@@ -1,2 +1,1 @@
-export const API_URL =
-  "https://my-json-server.typicode.com/akakinaneishvili/my-furniture-api";
+export const API_URL = "http://localhost:3001";
