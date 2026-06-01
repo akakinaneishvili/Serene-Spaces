@@ -32,6 +32,27 @@ function Collections() {
     return matchesCategory && matchesSearch;
   });
 
+  const handleAddToCart = (e, item) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingItem = existingCart.find(
+      (cartItem) => cartItem.id === item.id,
+    );
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      existingCart.push({ ...item, quantity: 1 });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(existingCart));
+
+    const event = new CustomEvent("cart-updated", { detail: existingCart });
+    window.dispatchEvent(event);
+  };
+
   return (
     <>
       <div className="pt-36 pb-20 bg-[rgb(252,243,231)] dark:bg-slate-950 transition-colors duration-300">
@@ -71,13 +92,20 @@ function Collections() {
                   </div>
 
                   <div className="flex flex-col grow">
-                    <p className="text-lg text-gray-900 dark:text-white font-bold line-clamp-2 uppercase h-14 transition-colors">
+                    <p className="text-lg text-gray-900 dark:text-white font-bold line-clamp-2 uppercase h-14 transition-colors mb-2">
                       {item.name}
                     </p>
 
-                    <p className="mt-auto pt-4 text-xl font-bold text-[rgba(188,95,19,1)]">
+                    <p className="text-xl font-bold text-[rgba(188,95,19,1)] mb-4">
                       {item.price}
                     </p>
+
+                    <button
+                      onClick={(e) => handleAddToCart(e, item)}
+                      className="w-full mt-auto bg-black text-white dark:bg-white dark:text-black text-center py-3 rounded-xl font-medium text-sm transition-all duration-300 hover:bg-[#bc5f13] hover:text-white flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                    >
+                      Add to Cart
+                    </button>
                   </div>
                 </div>
               </Link>

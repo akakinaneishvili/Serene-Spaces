@@ -8,6 +8,7 @@ function SmallCards() {
   const [searchParams] = useSearchParams();
 
   const activeCategory = searchParams.get("category");
+  const sortByPrice = searchParams.get("sort");
 
   useEffect(() => {
     const getProdCards = async () => {
@@ -22,14 +23,27 @@ function SmallCards() {
     getProdCards();
   }, []);
 
-  const filteredProducts = prod.filter((item) => {
+  let filteredProducts = prod.filter((item) => {
     if (!activeCategory) return true;
     return item.category === activeCategory;
   });
 
+  if (sortByPrice) {
+    filteredProducts = [...filteredProducts].sort((a, b) => {
+      const priceA = Number(String(a.price).replace(/[^0-9.]/g, ""));
+      const priceB = Number(String(b.price).replace(/[^0-9.]/g, ""));
+
+      if (sortByPrice === "asc") {
+        return priceA - priceB;
+      } else {
+        return priceB - priceA;
+      }
+    });
+  }
+
   return (
-    <div className="max-w-7xl mx-auto px-4 py-8">
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+    <div className="w-full grow">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {filteredProducts.map((item) => (
           <Card
             key={item.id}

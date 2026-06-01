@@ -53,7 +53,7 @@ function CategoryCollections() {
                     ${isActive ? "border-white/20 invert-0" : "border-transparent dark:border-slate-700 dark:invert"}`}
                 />
               )}
-              <p className="m-0 font-medium">{item.name}</p>
+              <p className="m-0 font-medium">{item.name} </p>
             </Link>
           );
         })}

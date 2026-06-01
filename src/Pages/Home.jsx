@@ -1,8 +1,8 @@
+import { useSearchParams } from "react-router-dom";
 import Arrow from "../assets/Arrow.svg";
 import ArrowDown from "../assets/ArrowDown2.svg";
 import bgimg from "../assets/BgImg.svg";
 
-import Header from "../leyout/Header";
 import Cards from "../cards/Cards";
 import SmallCards from "../cards/SmallCards";
 import Popproducts from "../cards/PoProducts";
@@ -10,18 +10,36 @@ import CategotyMenu from "../components/CategotyMenu";
 import Inspiration from "../components/Inspiration";
 
 function Home() {
+  const [searchParams, setSearchParams] = useSearchParams();
+  const currentSort = searchParams.get("sort");
+
+  const handleSortChange = () => {
+    if (!currentSort) {
+      searchParams.set("sort", "asc");
+    } else if (currentSort === "asc") {
+      searchParams.set("sort", "desc");
+    } else {
+      searchParams.delete("sort");
+    }
+    setSearchParams(searchParams);
+  };
+
+  const getSortLabel = () => {
+    if (currentSort === "asc") return "Price: Low to High";
+    if (currentSort === "desc") return "Price: High to Low";
+    return "Price";
+  };
+
   return (
     <>
       <div
-        className="w-full min-h-[780px] relative overflow-hidden flex flex-col justify-center pt-32
-                      bg-gradient-to-br from-[#fbf6f0] via-[#FCF3E7] to-[#f3e6d5]
-                      dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950
-                      transition-colors duration-500"
+        className="w-full min-h-195 relative overflow-hidden flex flex-col justify-center pt-32
+                   bg-linear-to-br from-[#fbf6f0] via-[#FCF3E7] to-[#f3e6d5]
+                   dark:from-slate-950 dark:via-slate-900 dark:to-neutral-950
+                   transition-colors duration-500"
       >
-        <Header />
-
-        <div className="absolute top-20 right-[-10%] w-[600px] h-[600px] rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob bg-[#bc5f13] dark:opacity-10 z-0"></div>
-        <div className="absolute bottom-10 right-[10%] w-[500px] h-[500px] rounded-full mix-blend-multiply filter blur-3xl opacity-25 animate-blob animation-delay-2000 bg-[#a39485] dark:opacity-5 z-0"></div>
+        <div className="absolute top-20 right-[-10%] w-150 h-150 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-blob bg-[#bc5f13] dark:opacity-10 z-0"></div>
+        <div className="absolute bottom-10 right-[10%] w-125 h-125 rounded-full mix-blend-multiply filter blur-3xl opacity-25 animate-blob animation-delay-2000 bg-[#a39485] dark:opacity-5 z-0"></div>
 
         <div className="max-w-7xl mx-auto w-full px-8 grid grid-cols-1 lg:grid-cols-2 items-center gap-12 relative z-10 mt-12">
           <div className="space-y-6">
@@ -54,9 +72,6 @@ function Home() {
         <div className="max-w-7xl m-auto px-6">
           <div className="flex pt-10 items-center">
             <p className="text-5xl font-bold">Our Bestsellers</p>
-            <p className="ml-auto flex items-center gap-2 font-bold cursor-pointer hover:opacity-80">
-              See all <img src={Arrow} alt="Arrow" className="dark:invert" />
-            </p>
           </div>
 
           <div className="mt-10">
@@ -71,8 +86,19 @@ function Home() {
               <span className="text-gray-400 dark:text-gray-500 font-bold">
                 Sort by
               </span>
-              <button className="flex items-center gap-2 border border-black dark:border-white rounded-xl px-4 py-2 hover:bg-[rgba(140,125,110,0.8)] dark:hover:bg-slate-800 transition-all cursor-pointer">
-                Price <img src={ArrowDown} alt="" className="dark:invert" />
+
+              <button
+                onClick={handleSortChange}
+                className="flex items-center gap-3 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border border-[rgba(188,95,19,0.15)] dark:border-slate-800 rounded-xl px-5 py-2.5 hover:border-[#bc5f13] dark:hover:border-[#bc5f13] hover:shadow-md transition-all duration-300 cursor-pointer font-medium text-sm text-gray-800 dark:text-gray-200 min-w-48 justify-between active:scale-95 shadow-sm"
+              >
+                <span>{getSortLabel()}</span>
+                <img
+                  src={ArrowDown}
+                  alt=""
+                  className={`w-3.5 h-3.5 dark:invert opacity-70 transition-transform duration-300 ${
+                    currentSort ? "opacity-100 text-[#bc5f13]" : ""
+                  } ${currentSort === "desc" ? "rotate-180" : ""}`}
+                />
               </button>
             </div>
           </div>

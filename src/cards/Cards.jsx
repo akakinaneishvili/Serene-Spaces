@@ -14,6 +14,27 @@ function Cards({ props }) {
     ProdCards();
   }, []);
 
+  const handleAddToCart = (e, item) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
+    const existingItem = existingCart.find(
+      (cartItem) => cartItem.id === item.id,
+    );
+
+    if (existingItem) {
+      existingItem.quantity += 1;
+    } else {
+      existingCart.push({ ...item, quantity: 1 });
+    }
+
+    localStorage.setItem("cart", JSON.stringify(existingCart));
+
+    const event = new CustomEvent("cart-updated", { detail: existingCart });
+    window.dispatchEvent(event);
+  };
+
   const displayData = props ? prod.slice(0, props) : prod;
 
   return (
@@ -28,14 +49,23 @@ function Cards({ props }) {
             <img
               src={item.image}
               alt={item.name}
-              className="w-full h-64 object-cover rounded"
+              className="w-full h-64 object-cover rounded mb-4"
             />
-            <p className="mt-4 text-2xl text-black dark:text-white font-bold transition-colors duration-300">
-              {item.name}
-            </p>
-            <p className="mt-auto pt-2 text-2xl font-bold text-[rgba(188,95,19,1)]">
-              {item.price}
-            </p>
+            <div className="flex flex-col grow">
+              <p className="text-2xl text-black dark:text-white font-bold transition-colors duration-300 mb-2">
+                {item.name}
+              </p>
+              <p className="text-2xl font-bold text-[rgba(188,95,19,1)] mb-4">
+                {item.price}
+              </p>
+
+              <button
+                onClick={(e) => handleAddToCart(e, item)}
+                className="w-full mt-auto bg-black text-white dark:bg-white dark:text-black text-center py-3 rounded-xl font-medium text-sm transition-all duration-300 hover:bg-[#bc5f13] hover:text-white flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+              >
+                Add to Cart
+              </button>
+            </div>
           </div>
         </Link>
       ))}
