@@ -249,67 +249,13 @@
   ],
   "users": [
     {
-      "firstname": "akaki",
-      "lastname": "naneishvili",
-      "email": "naneiSvili@gma.com",
-      "phone": "555454545",
-      "address": "tbilisi , cabaZe 2",
-      "password": "akaki1234",
-      "id": "OE16CjXGkpo"
-    },
-    {
-      "firstname": "saaba",
-      "lastname": "kaooa",
-      "email": "sdsdsds@gfgd.com",
-      "phone": "14141141441",
-      "address": "tbilisi , cabaZe 2",
-      "password": "55454445454545",
-      "id": "98p6M_PD1Z8"
-    },
-    {
-      "firstname": "zoro",
-      "lastname": "zoroian",
-      "email": "zoro@gg.com",
-      "phone": "43434234234",
-      "address": "tbilisi , cabaZe 2",
-      "password": "8989898989",
-      "id": "iWzaNgXrt3w"
-    },
-    {
-      "firstname": "saqoneli",
-      "lastname": "saqonelidze",
-      "email": "saqo@das.com",
-      "phone": "90909090909",
-      "address": "tbilisi , cabaZe 2",
-      "password": "0990909090909090",
-      "id": "bWg9TX813rU"
-    },
-    {
-      "firstname": "gela",
-      "lastname": "geladze",
-      "email": "gela@g.com",
-      "phone": "775775775775",
-      "address": "tbilisi , cabaZe 2",
-      "password": "123456",
-      "id": "FBJSk0Hbkno"
-    },
-    {
-      "firstname": "gela",
-      "lastname": "geeeela",
-      "email": "gelele@dd.com",
-      "phone": "77474747",
-      "address": "tbilisi , cabaZe 2",
-      "password": "2345678w",
-      "id": "PIugeasiyJE"
-    },
-    {
       "firstname": "იმნაძე",
       "lastname": "ნიკოლოზ",
       "email": "imnadzenicholas@itvet.ge",
-      "phone": "14141141441",
+      "phone": "5545545654456",
       "address": "tbilisi , cabaZe 2",
-      "password": "3335353533w",
-      "id": "NaoWh9SbdKk"
+      "password": "AAssddffrr3344",
+      "id": "6Quszsf7mbo"
     }
   ],
   "$schema": "./node_modules/json-server/schema.json"

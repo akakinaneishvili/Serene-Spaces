@@ -3,27 +3,30 @@ import { API_URL } from "../config";
 import { useState } from "react";
 
 function LogIn() {
+  const [errorMsg, setErrorMsg] = useState("");
+  const navigate = useNavigate();
+
   async function handleLogin(e) {
     e.preventDefault();
+    setErrorMsg("");
 
     const currentData = {
       firstname: e.target.firstname.value,
       password: e.target.password.value,
     };
 
-    console.log(currentData);
-
     const response = await fetch(
       `${API_URL}/users?firstname=${currentData.firstname}&password=${currentData.password}`,
     );
 
     const data = await response.json();
-    console.log(data);
 
     if (data.length > 0) {
-      console.log("გილოცავთ! ავტორიზაცია წარმატებით გაიარეთ.");
+      sessionStorage.setItem("currentUser", JSON.stringify(data[0]));
+      window.dispatchEvent(new Event("auth-change"));
+      navigate("/profile");
     } else {
-      console.log("მომხმარებელი ვერ მოიძებნა ან პაროლი არასწორია!");
+      setErrorMsg("მომხმარებელი ვერ მოიძებნა ან პაროლი არასწორია!");
     }
   }
 
@@ -40,6 +43,13 @@ function LogIn() {
             </h2>
             <div className="w-12 h-1 bg-[#bc5f13] mx-auto rounded-full opacity-60"></div>
           </div>
+
+          {errorMsg && (
+            <div className="bg-red-100 dark:bg-red-950/50 text-red-600 dark:text-red-400 text-sm p-4 rounded-xl text-center font-medium border border-red-200 dark:border-red-900/30">
+              {errorMsg}
+            </div>
+          )}
+
           <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-1">
               <label className="text-xs font-semibold uppercase tracking-wider text-[#bc5f13] ml-1">

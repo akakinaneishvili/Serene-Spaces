@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Vector from "../assets/Vector.svg";
 import { API_URL } from "../config.js";
@@ -8,8 +8,27 @@ import CartDropdown from "../components/CartDropdown.jsx";
 
 function Header() {
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [cartCount, setCartCount] = useState(0);
 
   const closeCart = () => setIsCartOpen(false);
+
+  const updateCartCount = () => {
+    const cart = JSON.parse(localStorage.getItem("cart")) || [];
+    const totalItems = cart.reduce(
+      (sum, item) => sum + (item.quantity || 0),
+      0,
+    );
+    setCartCount(totalItems);
+  };
+
+  useEffect(() => {
+    updateCartCount();
+
+    window.addEventListener("cart-updated", updateCartCount);
+    return () => {
+      window.removeEventListener("cart-updated", updateCartCount);
+    };
+  }, []);
 
   return (
     <>
@@ -26,7 +45,7 @@ function Header() {
           <div className="flex gap-2 items-center relative">
             <div
               onClick={() => setIsCartOpen(!isCartOpen)}
-              className={`rounded-2xl px-3 py-2 md:px-4 inline-flex items-center justify-center transition-all duration-300 hover:shadow-md cursor-pointer group
+              className={`rounded-2xl px-3 py-2 md:px-4 inline-flex items-center justify-center transition-all duration-300 hover:shadow-md cursor-pointer group relative
                           ${isCartOpen ? "bg-[#bc5f13] text-white shadow-md" : "hover:bg-[#bc5f13]"}`}
             >
               <img
@@ -35,6 +54,12 @@ function Header() {
                 className={`w-5 h-5 transition-all
                             ${isCartOpen ? "invert-0" : "dark:invert group-hover:invert-0"}`}
               />
+
+              {cartCount > 0 && (
+                <span className="absolute -top-1.5 -right-1.5 bg-red-500 text-white text-xs font-bold w-5 h-5 flex items-center justify-center rounded-full animate-scaleIn">
+                  {cartCount}
+                </span>
+              )}
             </div>
 
             {isCartOpen && <CartDropdown onClose={closeCart} />}
