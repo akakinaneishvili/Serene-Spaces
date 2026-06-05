@@ -73,7 +73,15 @@ export default function AuthProvaider({ children }) {
 
   return (
     <AuthContext.Provider
-      value={{ isUser, setIsUser, handleLogOut, handleLogin, errorMsg }}
+      value={{
+        isUser,
+        setIsUser,
+        setIsUser,
+        UserData,
+        handleLogOut,
+        handleLogin,
+        errorMsg,
+      }}
     >
       {children}
     </AuthContext.Provider>

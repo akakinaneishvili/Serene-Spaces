@@ -3,14 +3,22 @@ import { useUser } from "../context/AuthContext";
 import { useEffect } from "react";
 
 function UserPage() {
-  const { isUser, handleLogOu } = useUser();
+  const { isUser, handleLogOut, UserData } = useUser();
   let navigate = useNavigate();
 
   useEffect(() => {
     if (!isUser) {
-      navigate("/login");
+      navigate("/Login");
     }
   }, [isUser, navigate]);
+
+  if (!UserData) {
+    return (
+      <div className="w-full min-h-screen bg-[#fff3dd] dark:bg-slate-950 pt-36 text-center text-gray-800 dark:text-white">
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <>
