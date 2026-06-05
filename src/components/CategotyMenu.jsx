@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
-import { API_URL } from "../config";
+const API_URLN =
+  "https://api.myjson.online/v1/records/836223de-fa91-4342-91f2-2780c715da6c";
 import { Link, useSearchParams } from "react-router-dom";
 
 function CategoryMenu() {
@@ -10,9 +11,9 @@ function CategoryMenu() {
 
   useEffect(() => {
     const catmenu = async () => {
-      const response = await fetch(`${API_URL}/menuCategory`);
-      const data = await response.json();
-      setMenu(data);
+      const response = await fetch(API_URLN);
+      const result = await response.json();
+      setMenu(result.data.menuCategory);
     };
     catmenu();
   }, []);

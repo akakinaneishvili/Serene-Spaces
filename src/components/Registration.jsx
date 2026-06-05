@@ -134,7 +134,7 @@ function Registration() {
 
       {isSuccessOpen && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex justify-center items-center z-50 p-4">
-          <div className="bg-white dark:bg-slate-900 p-8 rounded-[2rem] max-w-sm w-full text-center shadow-2xl border border-[#f3e0c0] dark:border-slate-800 flex flex-col items-center gap-4 transition-colors duration-300">
+          <div className="bg-white dark:bg-slate-900 p-8 rounded-4xl max-w-sm w-full text-center shadow-2xl border border-[#f3e0c0] dark:border-slate-800 flex flex-col items-center gap-4 transition-colors duration-300">
             <div className="w-16 h-16 bg-green-100 dark:bg-green-950/50 rounded-full flex justify-center items-center text-green-600 dark:text-green-400 text-3xl font-bold">
               ✓
             </div>

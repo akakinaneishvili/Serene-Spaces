@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
-import { API_URL } from "../config";
+const API_URLN =
+  "https://api.myjson.online/v1/records/836223de-fa91-4342-91f2-2780c715da6c";
+
 import { Link, useSearchParams } from "react-router-dom";
 import CategotyMenu from "../components/CategotyMenu";
 import CategotyCollections from "../components/CategotyCollections";
@@ -14,9 +16,9 @@ function Collections() {
 
   useEffect(() => {
     const ProdCards = async () => {
-      const prodInfo = await fetch(`${API_URL}/products`);
-      const data = await prodInfo.json();
-      setProd(data);
+      const response = await fetch(API_URLN);
+      const result = await response.json();
+      setProd(result.data.products);
     };
 
     ProdCards();

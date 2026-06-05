@@ -1,14 +1,15 @@
 import { useEffect, useState } from "react";
-import { API_URL } from "../config";
+const API_URLN =
+  "https://api.myjson.online/v1/records/836223de-fa91-4342-91f2-2780c715da6c";
 
 function Milestones() {
   const [info, setinfo] = useState([]);
 
   useEffect(() => {
     const getMilestones = async () => {
-      const response = await fetch(`${API_URL}/milestones`);
-      const data = await response.json();
-      setinfo(data);
+      const response = await fetch(API_URLN);
+      const result = await response.json();
+      setinfo(result.data.milestones);
     };
     getMilestones();
   }, []);

@@ -57,7 +57,7 @@ function Home() {
             <div className="pt-4"></div>
           </div>
 
-          <div className="hidden lg:flex justify-center items-center relative h-[500px] z-10">
+          <div className="hidden lg:flex justify-center items-center relative h-125 z-10">
             <div className="w-80 h-80 border border-[rgba(188,95,19,0.2)] dark:border-slate-800 rounded-full absolute animate-ping-slow"></div>
             <div className="w-64 h-64 bg-[rgba(163,148,133,0.1)] dark:bg-slate-900/50 backdrop-blur-md border border-[rgba(188,95,19,0.15)] rounded-2xl rotate-12 flex items-center justify-center p-8 shadow-xl transition-colors">
               <p className="font-serif text-2xl text-center italic text-[#bc5f13]">
@@ -103,9 +103,13 @@ function Home() {
             </div>
           </div>
 
-          <div className="flex mt-14 justify-between gap-10">
-            <CategotyMenu />
-            <SmallCards />
+          <div className="flex flex-col lg:flex-row mt-14 justify-between gap-10 items-start">
+            <div className="w-full lg:w-1/4">
+              <CategotyMenu />
+            </div>
+            <div className="w-full lg:w-3/4">
+              <SmallCards />
+            </div>
           </div>
 
           <div className="py-20">

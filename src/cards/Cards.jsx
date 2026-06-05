@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { API_URL } from "../config";
+const API_URLN =
+  "https://api.myjson.online/v1/records/836223de-fa91-4342-91f2-2780c715da6c";
+
 import { Link } from "react-router-dom";
 
 function Cards({ props }) {
@@ -7,9 +9,9 @@ function Cards({ props }) {
 
   useEffect(() => {
     const ProdCards = async () => {
-      const prodInfo = await fetch(`${API_URL}/products`);
-      const data = await prodInfo.json();
-      setProd(data);
+      const prodInfo = await fetch(API_URLN);
+      const result = await prodInfo.json();
+      setProd(result.data.products);
     };
     ProdCards();
   }, []);
@@ -45,7 +47,7 @@ function Cards({ props }) {
           key={item.id}
           className="no-underline block h-full"
         >
-          <div className="flex flex-col h-full bg-[#fcf3e7] dark:bg-slate-900 rounded shadow p-4 hover:shadow-lg transition hover:cursor-pointer border border-transparent dark:border-slate-800 transition-colors duration-300">
+          <div className="flex flex-col h-full bg-[#fcf3e7] dark:bg-slate-900 rounded shadow p-4 hover:shadow-lg transition hover:cursor-pointer border border-transparent dark:border-slate-800 duration-300">
             <img
               src={item.image}
               alt={item.name}

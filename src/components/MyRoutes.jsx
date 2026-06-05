@@ -7,6 +7,7 @@ import About from "../Pages/About";
 import ProductDetails from "../Pages/ProductDetails";
 import Registration from "./Registration";
 import LogIn from "./LogIn";
+import UserPage from "../Pages/Userpage";
 
 function MyRoutes() {
   return (
@@ -19,6 +20,7 @@ function MyRoutes() {
         <Route path="About" element={<About />} />
         <Route path="Registration" element={<Registration />} />
         <Route path="LogIn" element={<LogIn />} />
+        <Route path="UserPage" element={<UserPage />} />
       </Route>
     </Routes>
   );

@@ -1,34 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../config";
 import { useState } from "react";
+import { useUser } from "../context/AuthContext";
 
 function LogIn() {
-  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
-
-  async function handleLogin(e) {
-    e.preventDefault();
-    setErrorMsg("");
-
-    const currentData = {
-      firstname: e.target.firstname.value,
-      password: e.target.password.value,
-    };
-
-    const response = await fetch(
-      `${API_URL}/users?firstname=${currentData.firstname}&password=${currentData.password}`,
-    );
-
-    const data = await response.json();
-
-    if (data.length > 0) {
-      sessionStorage.setItem("currentUser", JSON.stringify(data[0]));
-      window.dispatchEvent(new Event("auth-change"));
-      navigate("/profile");
-    } else {
-      setErrorMsg("მომხმარებელი ვერ მოიძებნა ან პაროლი არასწორია!");
-    }
-  }
+  const { errorMsg, handleLogin } = useUser();
 
   return (
     <>
