@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
-const API_URLN =
-  "https://api.myjson.online/v1/records/836223de-fa91-4342-91f2-2780c715da6c";
-
 import { Link } from "react-router-dom";
+import { API_URLN } from "../config";
 
 function Cards({ props }) {
   const [prod, setProd] = useState([]);
@@ -11,7 +9,7 @@ function Cards({ props }) {
     const ProdCards = async () => {
       const prodInfo = await fetch(API_URLN);
       const result = await prodInfo.json();
-      setProd(result.data.products);
+      setProd(result.products);
     };
     ProdCards();
   }, []);

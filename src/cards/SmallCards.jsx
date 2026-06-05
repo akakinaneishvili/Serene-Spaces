@@ -1,9 +1,8 @@
 import { useState, useEffect } from "react";
-const API_URLN =
-  "https://api.myjson.online/v1/records/836223de-fa91-4342-91f2-2780c715da6c";
 
 import { useSearchParams } from "react-router-dom";
 import Card from "./card";
+import { API_URLN } from "../config";
 
 function SmallCards() {
   const [prod, setProd] = useState([]);
@@ -16,7 +15,7 @@ function SmallCards() {
     const getProdCards = async () => {
       const response = await fetch(API_URLN);
       const result = await response.json();
-      setProd(result.data.products);
+      setProd(result.products);
     };
     getProdCards();
   }, []);

@@ -1,7 +1,11 @@
 import { useState, useEffect } from "react";
+import { useUser } from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 function Shopping() {
   const [cartItems, setCartItems] = useState([]);
+
+  const { isUser } = useUser();
 
   const loadCart = () => {
     const savedCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -11,17 +15,16 @@ function Shopping() {
   useEffect(() => {
     loadCart();
 
-    // 🌟 ფუნქცია, რომელიც CustomEvent-იდან წაიკითხავს ახალ მონაცემებს
     const handleCartUpdate = (event) => {
       if (event.detail) {
-        setCartItems(event.detail); // პირდაპირ ვსვამთ გამოტანებულ ახალ მასივს
+        setCartItems(event.detail);
       } else {
         loadCart();
       }
     };
 
     window.addEventListener("storage", loadCart);
-    window.addEventListener("cart-updated", handleCartUpdate); // ვუსმენთ CustomEvent-ს
+    window.addEventListener("cart-updated", handleCartUpdate);
 
     return () => {
       window.removeEventListener("storage", loadCart);
@@ -139,12 +142,22 @@ function Shopping() {
                   </div>
                 </div>
               </div>
-              <button
-                onClick={() => alert("Order Placed!")}
-                className="w-full bg-black text-white dark:bg-white dark:text-black py-4 rounded-xl font-medium text-sm mt-6 cursor-pointer"
-              >
-                Place Order
-              </button>
+
+              {isUser ? (
+                <button
+                  onClick={() => alert("Order Placed!")}
+                  className="w-full bg-black text-white dark:bg-white dark:text-black py-4 rounded-xl font-medium text-sm mt-6 cursor-pointer"
+                >
+                  Place Order
+                </button>
+              ) : (
+                <Link
+                  to="/Login"
+                  className=" flex w-fullitems-center justify-center bg-orange-600 text-white py-4 rounded-xl font-medium text-sm mt-6 hover:bg-orange-700 transition-colors block text-center"
+                >
+                  Log In to Place Order
+                </Link>
+              )}
             </div>
           </div>
         )}

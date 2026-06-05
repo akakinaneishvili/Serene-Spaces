@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
-const API_URLN =
-  "https://api.myjson.online/v1/records/836223de-fa91-4342-91f2-2780c715da6c";
+import { API_URLN } from "../config";
 
 function Popproducts(props) {
   const [prod, setProd] = useState([]);
@@ -9,7 +8,7 @@ function Popproducts(props) {
     const ProdCards = async () => {
       const prodInfo = await fetch(API_URLN);
       const result = await prodInfo.json();
-      setProd(result.data.products);
+      setProd(result.products);
     };
     ProdCards();
   }, []);

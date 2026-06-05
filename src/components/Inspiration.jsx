@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
-const API_URLN =
-  "https://api.myjson.online/v1/records/836223de-fa91-4342-91f2-2780c715da6c";
+import { API_URLN } from "../config";
 
 function Inspiration() {
   const [images, setImages] = useState([]);
@@ -9,7 +8,7 @@ function Inspiration() {
     const fetchImages = async () => {
       const response = await fetch(API_URLN);
       const result = await response.json();
-      setImages(result.data.InspirationImg);
+      setImages(result.InspirationImg);
     };
     fetchImages();
   }, []);

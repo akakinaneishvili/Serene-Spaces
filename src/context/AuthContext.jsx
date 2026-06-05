@@ -30,8 +30,6 @@ export default function AuthProvaider({ children }) {
   }, [isUser, UserData]);
 
   async function handleLogin(e) {
-    console.log(100);
-
     e.preventDefault();
 
     setErrorMsg("");
@@ -66,13 +64,11 @@ export default function AuthProvaider({ children }) {
   }
 
   function handleLogOut() {
-    console.log(200);
-
     localStorage.removeItem("userLogin");
 
     setIsUser(false);
 
-    navigate("/Login");
+    navigate(navigate.back());
   }
 
   return (

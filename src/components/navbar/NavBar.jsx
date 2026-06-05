@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
-const API_URLN =
-  "https://api.myjson.online/v1/records/836223de-fa91-4342-91f2-2780c715da6c";
+
 import { useEffect, useState } from "react";
+import { API_URLN } from "../../config";
 
 function NavBar({ onItemClick }) {
   const [menu, setMenu] = useState([]);
@@ -11,7 +11,7 @@ function NavBar({ onItemClick }) {
     const fetchNavbar = async () => {
       const response = await fetch(API_URLN);
       const result = await response.json();
-      setMenu(result.data.navbar);
+      setMenu(result.navbar);
     };
     fetchNavbar();
   }, []);
