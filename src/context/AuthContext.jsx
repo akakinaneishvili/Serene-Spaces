@@ -1,7 +1,5 @@
 import { createContext, useEffect, useState, useContext } from "react";
-
 import { API_URL } from "../config";
-
 import { useNavigate } from "react-router-dom";
 
 export const AuthContext = createContext();
@@ -9,66 +7,62 @@ export const AuthContext = createContext();
 export default function AuthProvaider({ children }) {
   const [isUser, setIsUser] = useState(() => {
     const savedUser = localStorage.getItem("userLogin");
-
     return savedUser ? JSON.parse(savedUser) : false;
   });
 
   const [UserData, setUserData] = useState(() => {
     const savedUser = localStorage.getItem("userData");
-
     return savedUser ? JSON.parse(savedUser) : false;
   });
 
   const [errorMsg, setErrorMsg] = useState("");
-
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.setItem("isUser", JSON.stringify(isUser));
-
+    localStorage.setItem("userLogin", JSON.stringify(isUser));
     localStorage.setItem("userData", JSON.stringify(UserData));
   }, [isUser, UserData]);
 
   async function handleLogin(e) {
     e.preventDefault();
-
     setErrorMsg("");
 
     const currentData = {
       firstname: e.target.firstname.value,
-
       password: e.target.password.value,
     };
 
-    const response = await fetch(
-      `${API_URL}/users?firstname=${currentData.firstname}&password=${currentData.password}`,
-    );
+    try {
+      const response = await fetch(
+        `${API_URL}/users?firstname=${currentData.firstname}&password=${currentData.password}`,
+      );
+      const data = await response.json();
 
-    const data = await response.json();
+      if (data.length > 0) {
+        const loggedInUser = data[0];
 
-    if (data.length > 0) {
-      localStorage.setItem("userLogin", "true");
+        localStorage.setItem("userLogin", JSON.stringify(true));
+        localStorage.setItem("userData", JSON.stringify(loggedInUser));
 
-      setIsUser(true);
+        setIsUser(true);
+        setUserData(loggedInUser);
 
-      navigate("/UserPage");
-
-      const loggedInUser = data[0];
-
-      setUserData(loggedInUser);
-
-      localStorage.setItem("userLogin", JSON.stringify(loggedInUser));
-    } else {
-      setErrorMsg("მომხმარებელი ვერ მოიძებნა ან პაროლი არასწორია!");
+        navigate("/userpage");
+      } else {
+        setErrorMsg("მომხმარებელი ვერ მოიძებნა ან პაროლი არასწორია!");
+      }
+    } catch (error) {
+      console.error(error);
+      setErrorMsg("სერვერთან კავშირი ვერ დამყარდა!");
     }
   }
 
   function handleLogOut() {
     localStorage.removeItem("userLogin");
-
+    localStorage.removeItem("userData");
     setIsUser(false);
-
-    navigate(navigate.back());
+    setUserData(false);
+    navigate("/login");
   }
 
   return (
@@ -76,8 +70,8 @@ export default function AuthProvaider({ children }) {
       value={{
         isUser,
         setIsUser,
-        setIsUser,
         UserData,
+        setUserData,
         handleLogOut,
         handleLogin,
         errorMsg,

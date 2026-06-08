@@ -65,7 +65,7 @@ function CartDropdown({ onClose }) {
               className="flex items-center gap-3 bg-white/50 dark:bg-slate-950/40 p-2 rounded-xl"
             >
               <img
-                src={item.image}
+                src={`/${item.image}`}
                 alt={item.name}
                 className="w-12 h-12 rounded-lg object-cover"
               />

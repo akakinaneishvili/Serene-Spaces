@@ -1,46 +1,68 @@
 import React, { memo } from "react";
-import { Link } from "react-router-dom";
+import facebook from "../../public/facebook.svg";
+import twitter from "../../public/twitter-x.svg";
+import instagram from "../../public/instagram.svg";
 
 const Footer = memo(() => {
   return (
-    <div className="bg-[rgba(163,148,133,0.3)] dark:bg-slate-900 w-full py-20 text-[rgba(45,40,35,1)] dark:text-white transition-colors duration-300">
-      <div className="max-w-7xl m-auto px-6 flex flex-col md:flex-row justify-between items-start gap-10">
-        <nav>
-          <p className="text-3xl font-serif font-bold italic">Serene Spaces</p>
-        </nav>
+    <div className="bg-[rgba(163,148,133,0.3)] dark:bg-slate-900 w-full py-12 text-[rgba(45,40,35,1)] dark:text-white transition-colors duration-300">
+      <div className="max-w-7xl m-auto px-6 flex flex-col md:flex-row justify-between items-center gap-6">
+        <div className="flex items-center gap-4">
+          <p className="text-2xl font-serif font-bold italic tracking-wide">
+            Serene Spaces
+          </p>
+          <span className="text-xs opacity-40 font-mono hidden sm:inline">
+            |
+          </span>
+          <p className="text-xs opacity-50 uppercase tracking-widest hidden sm:inline">
+            Tbilisi
+          </p>
+        </div>
 
-        <nav>
-          <ul className="space-y-3 text-[rgba(45,40,35,0.7)] dark:text-slate-400">
-            <li className="hover:text-black dark:hover:text-white cursor-pointer transition-colors">
-              Abuse
-            </li>
-            <li className="hover:text-black dark:hover:text-white cursor-pointer transition-colors">
-              Blog
-            </li>
-            <li className="hover:text-black dark:hover:text-white transition-colors">
-              <Link
-                to="/About"
-                className="block w-full text-inherit no-underline"
-              >
-                About Us
-              </Link>
-            </li>
-          </ul>
-        </nav>
+        <div className="text-xs opacity-40 font-mono tracking-tight text-center md:text-left">
+          © {new Date().getFullYear()} Serene Spaces. All rights reserved.
+        </div>
 
-        <nav className="flex flex-col gap-6">
-          <p className="text-2xl font-serif">Join Newsletter</p>
-          <div className="flex flex-col sm:flex-row items-center gap-4">
-            <input
-              type="text"
-              placeholder="Your Email Address"
-              className="bg-transparent text-black dark:text-white w-full sm:w-64 h-12 rounded-full border border-[rgba(45,40,35,0.3)] dark:border-slate-700 px-6 outline-none focus:border-black dark:focus:border-white transition-all placeholder:text-[rgba(45,40,35,0.5)] dark:placeholder:text-slate-500"
+        <div className="flex gap-6 items-center">
+          <a
+            href="https://instagram.com"
+            target="_blank"
+            rel="noreferrer"
+            className="w-6 h-6 hover:scale-110 transition-transform duration-200 flex items-center justify-center"
+          >
+            <img
+              src={instagram}
+              alt="Instagram"
+              className="w-full h-full object-contain dark:invert transition-all"
             />
-            <button className="bg-[rgba(45,40,35,1)] dark:bg-slate-800 text-white px-8 h-12 rounded-full font-bold hover:bg-black dark:hover:bg-slate-700 transition-colors">
-              Submit
-            </button>
-          </div>
-        </nav>
+          </a>
+
+          <a
+            href="https://facebook.com"
+            target="_blank"
+            rel="noreferrer"
+            className="w-6 h-6 hover:scale-110 transition-transform duration-200 flex items-center justify-center"
+          >
+            <img
+              src={facebook}
+              alt="Facebook"
+              className="w-full h-full object-contain dark:invert transition-all"
+            />
+          </a>
+
+          <a
+            href="https://x.com"
+            target="_blank"
+            rel="noreferrer"
+            className="w-6 h-6 hover:scale-110 transition-transform duration-200 flex items-center justify-center"
+          >
+            <img
+              src={twitter}
+              alt="X"
+              className="w-full h-full object-contain dark:invert transition-all"
+            />
+          </a>
+        </div>
       </div>
     </div>
   );

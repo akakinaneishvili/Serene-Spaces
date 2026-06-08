@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { API_URL } from "../config";
+import { API_URLN } from "../config";
 
 function ProductDetails() {
   const { id } = useParams();
@@ -9,9 +9,13 @@ function ProductDetails() {
 
   useEffect(() => {
     const fetchProduct = async () => {
-      const response = await fetch(`${API_URL}/products/${id}`);
-      const data = await response.json();
-      setProduct(data);
+      const response = await fetch(API_URLN);
+      const result = await response.json();
+
+      if (result && result.products) {
+        const foundProduct = result.products.find((item) => item.id === id);
+        setProduct(foundProduct);
+      }
     };
     fetchProduct();
   }, [id]);
@@ -40,7 +44,7 @@ function ProductDetails() {
         <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row gap-16 items-center">
           <div className="w-full md:w-1/2 flex justify-center">
             <img
-              src={product?.image}
+              src={`/${product?.image}`}
               alt={product?.name}
               className="w-full max-w-lg h-auto rounded-2xl shadow-2xl object-cover"
             />

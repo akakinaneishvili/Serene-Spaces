@@ -1,4 +1,4 @@
-import { Navigate, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/AuthContext";
 import { useEffect } from "react";
 
@@ -8,7 +8,7 @@ function UserPage() {
 
   useEffect(() => {
     if (!isUser) {
-      navigate("/Login");
+      navigate("/login");
     }
   }, [isUser, navigate]);
 
@@ -26,10 +26,10 @@ function UserPage() {
         <div className="w-full max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-1 bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-xl shadow-orange-900/5 border border-[#f3e0c0] dark:border-slate-800/60 h-fit text-center">
             <div className="w-24 h-24 bg-[#bc5f13] text-white rounded-full flex justify-center items-center text-3xl font-serif font-bold mx-auto shadow-lg shadow-orange-700/20 mb-4 uppercase">
-              {isUser.firstname ? isUser.firstname[0] : "U"}
+              {UserData.firstname ? UserData.firstname[0] : "U"}
             </div>
             <h3 className="text-2xl font-serif font-bold text-gray-800 dark:text-white capitalize">
-              {isUser.firstname} {isUser.lastname}
+              {UserData.firstname} {UserData.lastname}
             </h3>
             <p className="text-sm text-gray-500 dark:text-slate-400 mt-1">
               Premium Member
@@ -49,7 +49,7 @@ function UserPage() {
                     Email Address
                   </span>
                   <span className="text-base text-gray-800 dark:text-slate-200 font-medium break-all">
-                    {isUser.email}
+                    {UserData.email}
                   </span>
                 </div>
                 <div className="p-5 rounded-2xl bg-[#fafafa] dark:bg-slate-800/40 border border-gray-100 dark:border-slate-800/60">
@@ -57,7 +57,7 @@ function UserPage() {
                     Phone Number
                   </span>
                   <span className="text-base text-gray-800 dark:text-slate-200 font-medium">
-                    {isUser.phone}
+                    {UserData.phone}
                   </span>
                 </div>
                 <div className="p-5 rounded-2xl bg-[#fafafa] dark:bg-slate-800/40 border border-gray-100 dark:border-slate-800/60 sm:col-span-2">
@@ -65,7 +65,7 @@ function UserPage() {
                     Delivery Address
                   </span>
                   <span className="text-base text-gray-800 dark:text-slate-200 font-medium capitalize">
-                    {isUser.address}
+                    {UserData.address}
                   </span>
                 </div>
               </div>
