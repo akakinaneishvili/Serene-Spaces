@@ -1,9 +1,9 @@
 {
   "users": [
     {
-      "firstname": "იმნაძე",
-      "lastname": "ნიკოლოზ",
-      "email": "imnadzenicholas@itvet.ge",
+      "firstname": "gela",
+      "lastname": "gelashvili",
+      "email": "imnadzenias@itvet.ge",
       "phone": "5545545654456",
       "address": "tbilisi , cabaZe 2",
       "password": "AAssddffrr3344",
@@ -12,7 +12,7 @@
     {
       "firstname": "test",
       "lastname": "test2",
-      "email": "imnadzenicholas@itvet.ge",
+      "email": "imnadzeolas@itvet.ge",
       "phone": "5545545654456",
       "address": "tbilisi , cabaZe 2",
       "password": "aabbcc",

@@ -28,13 +28,13 @@ export default function AuthProvaider({ children }) {
     setErrorMsg("");
 
     const currentData = {
-      firstname: e.target.firstname.value,
+      email: e.target.email.value,
       password: e.target.password.value,
     };
 
     try {
       const response = await fetch(
-        `${API_URL}/users?firstname=${currentData.firstname}&password=${currentData.password}`,
+        `${API_URL}/users?email=${currentData.email}&password=${currentData.password}`,
       );
       const data = await response.json();
 

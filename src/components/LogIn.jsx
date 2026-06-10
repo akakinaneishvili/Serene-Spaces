@@ -30,12 +30,12 @@ function LogIn() {
           <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-1">
               <label className="text-xs font-semibold uppercase tracking-wider text-[#bc5f13] ml-1">
-                First Name
+                Email Address
               </label>
               <input
-                type="text"
-                name="firstname"
-                placeholder="John"
+                type="email"
+                name="email"
+                placeholder="example@gmail.com"
                 required
                 className="bg-[#fafafa] dark:bg-slate-800 border border-[#e2e8f0] dark:border-slate-700 px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light dark:text-white"
               />
