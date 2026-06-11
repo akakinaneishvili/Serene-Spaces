@@ -1,12 +1,12 @@
 {
   "users": [
     {
-      "firstname": "gela",
+      "firstname": "baqari",
       "lastname": "gelashvili",
       "email": "imnadzenias@itvet.ge",
-      "phone": "5545545654456",
+      "phone": "574334335",
       "address": "tbilisi , cabaZe 2",
-      "password": "AAssddffrr3344",
+      "password": "Salami22",
       "id": "6Quszsf7mbo"
     },
     {
@@ -28,5 +28,6 @@
       "id": "6Quszsf7mbo"
     }
   ],
+
   "$schema": "./node_modules/json-server/schema.json"
 }

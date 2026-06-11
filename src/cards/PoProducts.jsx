@@ -1,17 +1,23 @@
 import React, { useState, useEffect } from "react";
 import { API_URLN } from "../config";
+import { useTranslation } from "react-i18next";
 
 function Popproducts(props) {
   const [prod, setProd] = useState([]);
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const ProdCards = async () => {
       const prodInfo = await fetch(API_URLN);
       const result = await prodInfo.json();
-      setProd(result.products);
+      const currentProdCards =
+        i18n.language.toUpperCase() === "KA"
+          ? result.product_KA
+          : result.product;
+      setProd(currentProdCards || []);
     };
     ProdCards();
-  }, []);
+  }, [i18n.language]);
 
   const handleAddToCart = (item) => {
     const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -60,7 +66,7 @@ function Popproducts(props) {
               onClick={handleAddToCart}
               className="w-full mt-auto  bg-[#bc5f13] text-white dark:bg-white dark:text-black text-center py-3 rounded-xl font-medium text-sm transition-all duration-300 hover:bg-black hover:text-white flex items-center justify-center gap-2 cursor-pointer active:scale-95"
             >
-              Add to Cart
+              {t("addToCart")}
             </button>
           </div>
         </div>

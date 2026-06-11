@@ -23,6 +23,33 @@ export default function AuthProvaider({ children }) {
     localStorage.setItem("userData", JSON.stringify(UserData));
   }, [isUser, UserData]);
 
+  async function updateUserField(fieldName, newValue) {
+    if (!UserData || !UserData.id) return;
+
+    try {
+      const response = await fetch(`${API_URL}/users/${UserData.id}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          [fieldName]: newValue,
+        }),
+      });
+
+      if (response.ok) {
+        const updatedUser = await response.json();
+
+        setUserData(updatedUser);
+        console.log(`${fieldName} წარმატებით განახლდა!`);
+      } else {
+        console.error("სერვერმა მონაცემები ვერ განაახლა.");
+      }
+    } catch (error) {
+      console.error("მონაცემების განახლებისას მოხდა შეცდომა:", error);
+    }
+  }
+
   async function handleLogin(e) {
     e.preventDefault();
     setErrorMsg("");
@@ -74,6 +101,7 @@ export default function AuthProvaider({ children }) {
         setUserData,
         handleLogOut,
         handleLogin,
+        updateUserField,
         errorMsg,
       }}
     >

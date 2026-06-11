@@ -1,22 +1,37 @@
 import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useSearchParams } from "react-router-dom";
 import { API_URLN } from "../config";
+import { useTranslation } from "react-i18next";
 
 function Cards({ props }) {
   const [prod, setProd] = useState([]);
+  const { t, i18n } = useTranslation();
+  const [searchParams] = useSearchParams();
+
+  const activeCategory = searchParams.get("category");
 
   useEffect(() => {
     const ProdCards = async () => {
-      const prodInfo = await fetch(API_URLN);
-      const result = await prodInfo.json();
-      setProd(result.products);
+      try {
+        const response = await fetch(`${API_URLN}?_t=${new Date().getTime()}`);
+        const result = await response.json();
+        const currentProdCards =
+          i18n.language.toUpperCase() === "KA"
+            ? result.products_KA
+            : result.products;
+        setProd(currentProdCards || []);
+      } catch (error) {
+        console.error("Error fetching products:", error);
+      }
     };
     ProdCards();
-  }, []);
+  }, [i18n.language]);
 
   const handleAddToCart = (e, item) => {
     e.preventDefault();
     e.stopPropagation();
+
+    if (!item) return;
 
     const existingCart = JSON.parse(localStorage.getItem("cart")) || [];
     const existingItem = existingCart.find(
@@ -35,7 +50,11 @@ function Cards({ props }) {
     window.dispatchEvent(event);
   };
 
-  const displayData = props ? prod.slice(0, props) : prod;
+  const filteredProd = activeCategory
+    ? prod.filter((item) => item.category === activeCategory)
+    : prod;
+
+  const displayData = props ? filteredProd.slice(0, props) : filteredProd;
 
   return (
     <>
@@ -60,10 +79,10 @@ function Cards({ props }) {
               </p>
 
               <button
-                onClick={handleAddToCart}
-                className="w-full mt-auto  bg-[#bc5f13] text-white dark:bg-white dark:text-black text-center py-3 rounded-xl font-medium text-sm transition-all duration-300 hover:bg-black hover:text-white flex items-center justify-center gap-2 cursor-pointer active:scale-95"
+                onClick={(e) => handleAddToCart(e, item)}
+                className="w-full mt-auto bg-[#bc5f13] text-white dark:bg-white dark:text-black text-center py-3 rounded-xl font-medium text-sm transition-all duration-300 hover:bg-black hover:text-white flex items-center justify-center gap-2 cursor-pointer active:scale-95"
               >
-                Add to Cart
+                {t("addToCart")}
               </button>
             </div>
           </div>

@@ -1,7 +1,7 @@
 import React, { memo } from "react";
-import facebook from "../../public/facebook.svg";
-import twitter from "../../public/twitter-x.svg";
-import instagram from "../../public/instagram.svg";
+import facebook from "../assets/facebook.svg";
+import twitter from "../assets/twitter-x.svg";
+import instagram from "../assets/instagram.svg";
 
 const Footer = memo(() => {
   return (

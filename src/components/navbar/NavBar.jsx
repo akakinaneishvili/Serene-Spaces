@@ -1,9 +1,11 @@
 import { NavLink } from "react-router-dom";
-
 import { useEffect, useState } from "react";
 import { API_URLN } from "../../config";
+import { useTranslation } from "react-i18next";
 
 function NavBar({ onItemClick }) {
+  const { t, i18n } = useTranslation();
+
   const [menu, setMenu] = useState([]);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -11,10 +13,15 @@ function NavBar({ onItemClick }) {
     const fetchNavbar = async () => {
       const response = await fetch(API_URLN);
       const result = await response.json();
-      setMenu(result.navbar);
+
+      const currentMenu =
+        i18n.language.toUpperCase() === "KA" ? result.navbar_KA : result.navbar;
+
+      setMenu(currentMenu || []);
     };
+
     fetchNavbar();
-  }, []);
+  }, [i18n.language]);
 
   const handleLinkClick = () => {
     setIsOpen(false);
@@ -82,9 +89,9 @@ function NavBar({ onItemClick }) {
           <NavLink
             to="/Registration"
             onClick={handleLinkClick}
-            className="flex h-11 items-center  justify-center w-full bg-[rgba(163,148,133,0.5)]  dark:bg-slate-800 text-black dark:text-white rounded-xl text-sm mb-3 font-medium"
+            className="flex h-11 items-center justify-center w-full bg-[rgba(163,148,133,0.5)] dark:bg-slate-800 text-black dark:text-white rounded-xl text-sm mb-3 font-medium"
           >
-            Register
+            {t("register")}{" "}
           </NavLink>
 
           <NavLink
@@ -92,7 +99,7 @@ function NavBar({ onItemClick }) {
             onClick={handleLinkClick}
             className="flex h-11 items-center justify-center w-full bg-[#bc5f13] text-white rounded-xl text-sm font-medium"
           >
-            Log In
+            {t("login")}{" "}
           </NavLink>
         </li>
       </ul>

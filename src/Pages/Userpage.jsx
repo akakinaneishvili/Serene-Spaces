@@ -1,16 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/AuthContext";
-import { useEffect, useRef, useState } from "react";
-
+import { useEffect, useState } from "react";
 import Settings from "../components/Settings";
 
 function UserPage() {
-  const emlInput = useRef(null);
-  const [emailReadOnli, setemailReadOnli] = useState(true);
-
-  const { isUser, handleLogOut, UserData } = useUser();
+  const { isUser, UserData, updateUserField } = useUser();
   let navigate = useNavigate();
-
   const [activeTab, setActiveTab] = useState("overview");
 
   useEffect(() => {
@@ -35,10 +30,10 @@ function UserPage() {
             <div className="w-24 h-24 bg-[#bc5f13] text-white rounded-full flex justify-center items-center text-3xl font-serif font-bold mx-auto shadow-lg shadow-orange-700/20 mb-4 uppercase">
               {UserData.firstname ? UserData.firstname[0] : "U"}
             </div>
+
             <h3 className="text-2xl font-serif font-bold text-gray-800 dark:text-white capitalize">
               {UserData.firstname} {UserData.lastname}
             </h3>
-
             <div className="w-full h-px bg-gray-100 dark:bg-slate-800 my-6"></div>
           </div>
 
@@ -51,15 +46,57 @@ function UserPage() {
                   </h4>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <Settings value={UserData.email} label="Email Address" />
-                    <Settings value={UserData.phone} label="Phone Number" />
+                    <Settings
+                      value={UserData.firstname}
+                      label="First Name"
+                      onSave={(newValue) =>
+                        updateUserField("firstname", newValue)
+                      }
+                    />
+                    <Settings
+                      value={UserData.lastname}
+                      label="Last Name"
+                      onSave={(newValue) =>
+                        updateUserField("lastname", newValue)
+                      }
+                    />
+
+                    <Settings
+                      value={UserData.email}
+                      label="Email Address"
+                      onSave={(newValue) => updateUserField("email", newValue)}
+                    />
+                    <Settings
+                      value={UserData.phone}
+                      label="Phone Number"
+                      onSave={(newValue) => updateUserField("phone", newValue)}
+                    />
 
                     <div className="sm:col-span-2">
                       <Settings
                         value={UserData.address}
                         label="Delivery Address"
+                        onSave={(newValue) =>
+                          updateUserField("address", newValue)
+                        }
                       />
                     </div>
+                  </div>
+                </div>
+
+                <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-xl shadow-orange-900/5 border border-[#f3e0c0] dark:border-slate-800/60">
+                  <h4 className="text-xl font-serif font-bold text-gray-800 dark:text-white mb-6">
+                    Security
+                  </h4>
+                  <div className="grid grid-cols-1 gap-4">
+                    <Settings
+                      value={UserData.password}
+                      label="Password"
+                      type="password"
+                      onSave={(newValue) =>
+                        updateUserField("password", newValue)
+                      }
+                    />
                   </div>
                 </div>
 

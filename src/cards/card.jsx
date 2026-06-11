@@ -1,6 +1,8 @@
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 
 function Card({ id, image, name, price }) {
+  const { t, i18n } = useTranslation();
   const productPath = id ? `/product/${id}` : "#";
 
   const handleAddToCart = (e) => {
@@ -50,7 +52,7 @@ function Card({ id, image, name, price }) {
           onClick={handleAddToCart}
           className="w-full mt-auto  bg-[#bc5f13] text-white dark:bg-white dark:text-black text-center py-3 rounded-xl font-medium text-sm transition-all duration-300 hover:bg-black hover:text-white flex items-center justify-center gap-2 cursor-pointer active:scale-95"
         >
-          Add to Cart
+          {t("addToCart")}
         </button>
       </div>
     </Link>

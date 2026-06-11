@@ -3,22 +3,28 @@ import { useState, useEffect } from "react";
 import { useSearchParams } from "react-router-dom";
 import Card from "./card";
 import { API_URLN } from "../config";
+import { useTranslation } from "react-i18next";
 
 function SmallCards() {
   const [prod, setProd] = useState([]);
+  const { t, i18n } = useTranslation();
   const [searchParams] = useSearchParams();
 
   const activeCategory = searchParams.get("category");
   const sortByPrice = searchParams.get("sort");
 
   useEffect(() => {
-    const getProdCards = async () => {
-      const response = await fetch(API_URLN);
-      const result = await response.json();
-      setProd(result.products);
+    const ProdCards = async () => {
+      const prodInfo = await fetch(API_URLN);
+      const result = await prodInfo.json();
+      const currentProdCards =
+        i18n.language.toUpperCase() === "KA"
+          ? result.products_KA
+          : result.products;
+      setProd(currentProdCards || []);
     };
-    getProdCards();
-  }, []);
+    ProdCards();
+  }, [i18n.language]);
 
   let filteredProducts = prod.filter((item) => {
     if (!activeCategory) return true;

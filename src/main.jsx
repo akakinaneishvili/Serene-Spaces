@@ -5,6 +5,7 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router-dom";
 import ThemeProvaider from "./context/ThemeContext.jsx";
 import AuthProvaider from "./context/AuthContext.jsx";
+import "../i18n.js";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>

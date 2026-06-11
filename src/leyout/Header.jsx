@@ -6,14 +6,22 @@ import DarkModeBtn from "../components/DarkModeBtn.jsx";
 import CartDropdown from "../components/CartDropdown.jsx";
 import { useUser } from "../context/AuthContext.jsx";
 import LogIn from "../components/LogIn.jsx";
-
+import { useTranslation } from "react-i18next";
 function Header() {
+  const { t, i18n } = useTranslation();
+
+  const toggleLanguage = () => {
+    const nextLang = i18n.language === "EN" ? "KA" : "EN";
+    i18n.changeLanguage(nextLang);
+    localStorage.setItem("lang", nextLang);
+  };
+
   const [isCartOpen, setIsCartOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
 
   const closeCart = () => setIsCartOpen(false);
 
-  const { isUser, handleLogOut } = useUser();
+  const { isUser, handleLogOut, UserData } = useUser();
 
   const updateCartCount = () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -68,10 +76,6 @@ function Header() {
 
             {isCartOpen && <CartDropdown onClose={closeCart} />}
 
-            <button className="text-black dark:text-white px-2.5 py-2 rounded-2xl inline-flex items-center justify-center transition-all duration-300 hover:bg-[#bc5f13] hover:text-white hover:shadow-md text-sm md:text-base">
-              EN
-            </button>
-
             <DarkModeBtn />
 
             {!isUser ? (
@@ -80,7 +84,7 @@ function Header() {
                 onClick={closeCart}
                 className="hidden sm:inline-block bg-[rgba(163,148,133,0.8)] dark:bg-slate-800 hover:bg-[#bc5f13] dark:hover:bg-[#bc5f13] hover:text-white border border-[rgba(0,0,0,0.2)] dark:border-slate-700 text-black dark:text-white px-3 py-2 rounded-xl transition-all text-sm whitespace-nowrap"
               >
-                Register
+                {t("Register")}
               </Link>
             ) : (
               <Link
@@ -100,7 +104,7 @@ function Header() {
                 onClick={handleLogOut}
                 className="hidden sm:inline-block bg-[rgba(163,148,133,0.8)] dark:bg-slate-800 hover:bg-[#bc5f13] dark:hover:bg-[#bc5f13] hover:text-white border border-[rgba(0,0,0,0.2)] dark:border-slate-700 text-black dark:text-white px-3 py-2 rounded-xl transition-all text-sm whitespace-nowrap cursor-pointer"
               >
-                log Out
+                {t("LogOut")}
               </button>
             ) : (
               <Link
@@ -108,9 +112,15 @@ function Header() {
                 onClick={closeCart}
                 className="hidden sm:inline-block bg-[rgba(163,148,133,0.8)] dark:bg-slate-800 hover:bg-[#bc5f13] dark:hover:bg-[#bc5f13] hover:text-white border border-[rgba(0,0,0,0.2)] dark:border-slate-700 text-black dark:text-white px-3 py-2 rounded-xl transition-all text-sm whitespace-nowrap"
               >
-                Log In
+                {t("LogIn")}
               </Link>
             )}
+            <button
+              onClick={toggleLanguage}
+              className="text-black dark:text-white px-2.5 py-2 rounded-2xl inline-flex items-center justify-center transition-all duration-300 hover:bg-[#bc5f13] hover:text-white hover:shadow-md text-sm md:text-base"
+            >
+              {i18n.language}
+            </button>
           </div>
         </div>
       </div>
