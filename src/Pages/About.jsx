@@ -5,15 +5,17 @@ import OurPhilosophy from "../components/OurPhilosophy";
 
 function About() {
   const { t, i18n } = useTranslation();
+  const isKa = i18n.language === "ka";
 
   return (
     <>
       <div className="bg-[#FCF3E7] dark:bg-slate-950 min-h-screen font-sans transition-colors duration-300">
         <div className="max-w-7xl m-auto pt-32 pb-44 px-6">
           <div className="flex flex-col items-center">
+            {/* 1. მთავარი სათაური */}
             <h1
               className={`text-center mb-24 tracking-tight mt-20 text-black dark:text-white transition-colors
-  ${i18n.language === "ka" ? "text-4xl md:text-6xl" : "text-5xl md:text-7xl"}`}
+                ${isKa ? "text-3xl md:text-5xl leading-tight" : "text-5xl md:text-7xl"}`}
             >
               {t("about_hero_sub", "Where Heritage Meets Modernity")}
             </h1>
@@ -36,7 +38,11 @@ function About() {
                 {t("story_sub", "Our Story")}
               </p>
 
-              <h1 className="text-5xl font-serif mb-10 leading-tight text-black dark:text-white max-w-sm transition-colors">
+              {/* 2. ვნებებზე აგებული მემკვიდრეობა */}
+              <h1
+                className={`font-serif mb-10 leading-tight text-black dark:text-white max-w-sm transition-colors
+                  ${isKa ? "text-3xl md:text-4xl" : "text-5xl"}`}
+              >
                 {t("story_title", "A Legacy Built on Passion")}
               </h1>
 
@@ -78,7 +84,11 @@ function About() {
               {t("journey_title", "Our Journey")}
             </p>
 
-            <h1 className="text-6xl font-serif text-black dark:text-white mb-20 transition-colors">
+            {/* 3. მნიშვნელოვანი ეტაპები (Milestones) */}
+            <h1
+              className={`font-serif text-black dark:text-white mb-20 transition-colors
+                ${isKa ? "text-4xl md:text-5xl" : "text-6xl"}`}
+            >
               {t("journey_sub", "Milestones")}
             </h1>
 
@@ -91,7 +101,12 @@ function About() {
             <p className="text-xs tracking-[0.3em] font-medium text-gray-500 dark:text-slate-400 uppercase mb-6 transition-colors">
               {t("values_sub", "CORE VALUES")}
             </p>
-            <h1 className="text-5xl md:text-6xl font-serif text-black dark:text-white mb-6 transition-colors">
+
+            {/* 4. ჩვენი ფილოსოფია */}
+            <h1
+              className={`font-serif text-black dark:text-white mb-6 transition-colors text-center
+                ${isKa ? "text-4xl md:text-5xl" : "text-5xl md:text-6xl"}`}
+            >
               {t("values_title", "Our Philosophy")}
             </h1>
             <p className="text-gray-600 dark:text-slate-400 mb-20 text-center italic transition-colors">
