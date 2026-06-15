@@ -12,7 +12,6 @@ function About() {
       <div className="bg-[#FCF3E7] dark:bg-slate-950 min-h-screen font-sans transition-colors duration-300">
         <div className="max-w-7xl m-auto pt-32 pb-44 px-6">
           <div className="flex flex-col items-center">
-            {/* 1. მთავარი სათაური */}
             <h1
               className={`text-center mb-24 tracking-tight mt-20 text-black dark:text-white transition-colors
                 ${isKa ? "text-3xl md:text-5xl leading-tight" : "text-5xl md:text-7xl"}`}
@@ -38,7 +37,6 @@ function About() {
                 {t("story_sub", "Our Story")}
               </p>
 
-              {/* 2. ვნებებზე აგებული მემკვიდრეობა */}
               <h1
                 className={`font-serif mb-10 leading-tight text-black dark:text-white max-w-sm transition-colors
                   ${isKa ? "text-3xl md:text-4xl" : "text-5xl"}`}
@@ -84,7 +82,6 @@ function About() {
               {t("journey_title", "Our Journey")}
             </p>
 
-            {/* 3. მნიშვნელოვანი ეტაპები (Milestones) */}
             <h1
               className={`font-serif text-black dark:text-white mb-20 transition-colors
                 ${isKa ? "text-4xl md:text-5xl" : "text-6xl"}`}
@@ -102,7 +99,6 @@ function About() {
               {t("values_sub", "CORE VALUES")}
             </p>
 
-            {/* 4. ჩვენი ფილოსოფია */}
             <h1
               className={`font-serif text-black dark:text-white mb-6 transition-colors text-center
                 ${isKa ? "text-4xl md:text-5xl" : "text-5xl md:text-6xl"}`}
