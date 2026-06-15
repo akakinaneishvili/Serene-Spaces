@@ -1,12 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useUser } from "../context/AuthContext";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import Settings from "../components/Settings";
 
 function UserPage() {
   const { isUser, UserData, updateUserField } = useUser();
   let navigate = useNavigate();
   const [activeTab, setActiveTab] = useState("overview");
+  const { t } = useTranslation();
 
   useEffect(() => {
     if (!isUser) {
@@ -17,7 +19,7 @@ function UserPage() {
   if (!UserData) {
     return (
       <div className="w-full min-h-screen bg-[#fff3dd] dark:bg-slate-950 pt-36 text-center text-gray-800 dark:text-white">
-        Loading...
+        {t("user_loading", "Loading...")}
       </div>
     );
   }
@@ -42,20 +44,20 @@ function UserPage() {
               <>
                 <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-xl shadow-orange-900/5 border border-[#f3e0c0] dark:border-slate-800/60">
                   <h4 className="text-xl font-serif font-bold text-gray-800 dark:text-white mb-6">
-                    Personal Information
+                    {t("user_personal_info", "Personal Information")}
                   </h4>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <Settings
                       value={UserData.firstname}
-                      label="First Name"
+                      label={t("user_firstname", "First Name")}
                       onSave={(newValue) =>
                         updateUserField("firstname", newValue)
                       }
                     />
                     <Settings
                       value={UserData.lastname}
-                      label="Last Name"
+                      label={t("user_lastname", "Last Name")}
                       onSave={(newValue) =>
                         updateUserField("lastname", newValue)
                       }
@@ -63,19 +65,19 @@ function UserPage() {
 
                     <Settings
                       value={UserData.email}
-                      label="Email Address"
+                      label={t("user_email", "Email Address")}
                       onSave={(newValue) => updateUserField("email", newValue)}
                     />
                     <Settings
                       value={UserData.phone}
-                      label="Phone Number"
+                      label={t("user_phone", "Phone Number")}
                       onSave={(newValue) => updateUserField("phone", newValue)}
                     />
 
                     <div className="sm:col-span-2">
                       <Settings
                         value={UserData.address}
-                        label="Delivery Address"
+                        label={t("user_address", "Delivery Address")}
                         onSave={(newValue) =>
                           updateUserField("address", newValue)
                         }
@@ -86,12 +88,12 @@ function UserPage() {
 
                 <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-xl shadow-orange-900/5 border border-[#f3e0c0] dark:border-slate-800/60">
                   <h4 className="text-xl font-serif font-bold text-gray-800 dark:text-white mb-6">
-                    Security
+                    {t("user_security", "Security")}
                   </h4>
                   <div className="grid grid-cols-1 gap-4">
                     <Settings
                       value={UserData.password}
-                      label="Password"
+                      label={t("user_password", "Password")}
                       type="password"
                       onSave={(newValue) =>
                         updateUserField("password", newValue)
@@ -102,24 +104,24 @@ function UserPage() {
 
                 <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-xl shadow-orange-900/5 border border-[#f3e0c0] dark:border-slate-800/60">
                   <h4 className="text-xl font-serif font-bold text-gray-800 dark:text-white mb-6">
-                    Account Overview
+                    {t("user_account_overview", "Account Overview")}
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div className="p-5 rounded-2xl bg-[#fafafa] dark:bg-slate-800/40 border border-gray-100 dark:border-slate-800/60">
                       <span className="text-xs font-semibold text-[#bc5f13] block mb-1 uppercase tracking-wider">
-                        Account Status
+                        {t("user_status_label", "Account Status")}
                       </span>
                       <span className="text-base text-gray-800 dark:text-slate-200 font-medium flex items-center gap-2">
                         <span className="w-2 h-2 rounded-full bg-green-500"></span>{" "}
-                        Active
+                        {t("user_status_active", "Active")}
                       </span>
                     </div>
                     <div className="p-5 rounded-2xl bg-[#fafafa] dark:bg-slate-800/40 border border-gray-100 dark:border-slate-800/60">
                       <span className="text-xs font-semibold text-[#bc5f13] block mb-1 uppercase tracking-wider">
-                        Registration Date
+                        {t("user_reg_date_label", "Registration Date")}
                       </span>
                       <span className="text-base text-gray-800 dark:text-slate-200 font-medium">
-                        June 2026
+                        {t("user_reg_date", "June 2026")}
                       </span>
                     </div>
                   </div>
@@ -129,12 +131,12 @@ function UserPage() {
 
             <div className="bg-white dark:bg-slate-900 p-8 rounded-[2.5rem] shadow-xl shadow-orange-900/5 border border-[#f3e0c0] dark:border-slate-800/60">
               <h4 className="text-xl font-serif font-bold text-gray-800 dark:text-white mb-4">
-                Recent Orders
+                {t("user_recent_orders", "Recent Orders")}
               </h4>
               <div className="flex flex-col items-center justify-center py-12 text-center">
                 <div className="text-4xl mb-3">📦</div>
                 <p className="text-gray-500 dark:text-slate-400 text-sm">
-                  You haven't placed any orders yet.
+                  {t("user_no_orders", "You haven't placed any orders yet.")}
                 </p>
               </div>
             </div>

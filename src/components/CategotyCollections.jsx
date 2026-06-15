@@ -12,27 +12,23 @@ function CategoryCollections() {
 
   useEffect(() => {
     const catmenu = async () => {
-      try {
-        const response = await fetch(`${API_URLN}?_t=${new Date().getTime()}`);
-        const result = await response.json();
+      const response = await fetch(`${API_URLN}?_t=${new Date().getTime()}`);
+      const result = await response.json();
 
-        setEnglishMenu(result.menuCategory || []);
+      setEnglishMenu(result.menuCategory || []);
 
-        const currentCatmenu =
-          i18n.language.toUpperCase() === "KA"
-            ? result.menuCategory_KA
-            : result.menuCategory;
+      const currentCatmenu =
+        i18n.language.toUpperCase() === "KA"
+          ? result.menuCategory_KA
+          : result.menuCategory;
 
-        setMenu(currentCatmenu || []);
-      } catch (error) {
-        console.error("Error fetching categories:", error);
-      }
+      setMenu(currentCatmenu || []);
     };
     catmenu();
   }, [i18n.language]);
 
   return (
-    <div className="max-w-7xl mx-auto px-4 py-10">
+    <div className="max-w-7xl mx-auto px-4 py-10  ">
       <div className="flex flex-wrap items-center justify-center gap-6">
         <Link
           to="?"

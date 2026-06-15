@@ -5,23 +5,30 @@ import CategotyMenu from "../components/CategotyMenu";
 import CategotyCollections from "../components/CategotyCollections";
 import Search from "../components/Search";
 import { API_URLN } from "../config";
+import { useTranslation } from "react-i18next";
 
 function Collections() {
   const [prod, setProd] = useState([]);
   const [searchParams] = useSearchParams();
   const [searchQuery, setSearchQuery] = useState("");
+  const { t, i18n } = useTranslation();
 
   const activeCategory = searchParams.get("category");
 
+  const isGeorgian = i18n.language.toUpperCase() === "KA";
+
   useEffect(() => {
     const ProdCards = async () => {
-      const response = await fetch(API_URLN);
-      const result = await response.json();
-      setProd(result.products);
+      const prodInfo = await fetch(API_URLN);
+      const result = await prodInfo.json();
+      const currentProdCards =
+        i18n.language.toUpperCase() === "KA"
+          ? result.products_KA
+          : result.products;
+      setProd(currentProdCards || []);
     };
-
     ProdCards();
-  }, []);
+  }, [i18n.language]);
 
   const filteredProducts = prod.filter((item) => {
     const matchesCategory = !activeCategory || item.category === activeCategory;
@@ -58,14 +65,30 @@ function Collections() {
     <>
       <div className="pt-36 pb-20 bg-[rgb(252,243,231)] dark:bg-slate-950 transition-colors duration-300">
         <div className="flex flex-col items-center">
-          <h1 className="text-5xl md:text-7xl text-center mb-24 tracking-tight mt-20 text-black dark:text-white transition-colors">
-            Our Collections
+          <h1
+            className={`text-center mb-24 tracking-tight mt-20 text-black dark:text-white transition-all duration-300
+      ${
+        isGeorgian
+          ? "font-sans text-4xl md:text-5xl font-bold tracking-wide"
+          : "font-serif text-5xl md:text-7xl"
+      }`}
+          >
+            {isGeorgian ? "ჩვენი კოლექციები" : "Our Collections"}
           </h1>
 
           <div className="flex flex-col items-center text-center">
-            <p className="max-w-[45ch] text-xl md:text-2xl leading-loose font-light text-gray-800 dark:text-slate-300 italic mb-8 transition-colors">
-              Discover thoughtfully curated furniture pieces that transform your
-              living spaces into sanctuaries of comfort and timeless elegance
+            <p
+              className={`max-w-[45ch] leading-loose text-gray-800 dark:text-slate-300 mb-8 transition-all duration-300
+        ${
+          isGeorgian
+            ? "font-sans text-base md:text-lg font-normal tracking-wide opacity-90"
+            : "font-light text-xl md:text-2xl italic"
+        }`}
+            >
+              {t(
+                "collections_desc",
+                "Discover thoughtfully curated furniture pieces that transform your living spaces into sanctuaries of comfort and timeless elegance",
+              )}
             </p>
           </div>
 
@@ -75,7 +98,7 @@ function Collections() {
 
         <CategotyCollections />
 
-        <div className="max-w-7xl mx-auto px-4 mt-12">
+        <div className="max-w-7xl mx-auto px-4 mt-12 ">
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             {filteredProducts.map((item) => (
               <Link

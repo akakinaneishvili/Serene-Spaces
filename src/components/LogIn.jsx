@@ -2,10 +2,12 @@ import { useNavigate } from "react-router-dom";
 import { API_URL } from "../config";
 import { useState } from "react";
 import { useUser } from "../context/AuthContext";
+import { useTranslation } from "react-i18next";
 
 function LogIn() {
   const navigate = useNavigate();
   const { errorMsg, handleLogin } = useUser();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -16,7 +18,7 @@ function LogIn() {
         >
           <div className="text-center mb-2">
             <h2 className="text-4xl font-serif text-[#1e293b] dark:text-white mb-2 tracking-tight">
-              Welcome Back
+              {t("login_welcome", "Welcome Back")}
             </h2>
             <div className="w-12 h-1 bg-[#bc5f13] mx-auto rounded-full opacity-60"></div>
           </div>
@@ -30,12 +32,12 @@ function LogIn() {
           <div className="flex flex-col gap-5">
             <div className="flex flex-col gap-1">
               <label className="text-xs font-semibold uppercase tracking-wider text-[#bc5f13] ml-1">
-                Email Address
+                {t("login_email_label", "Email Address")}
               </label>
               <input
                 type="email"
                 name="email"
-                placeholder="example@gmail.com"
+                placeholder={t("login_email_placeholder", "example@gmail.com")}
                 required
                 className="bg-[#fafafa] dark:bg-slate-800 border border-[#e2e8f0] dark:border-slate-700 px-5 py-4 rounded-2xl focus:outline-none focus:border-[#bc5f13] transition-all font-light dark:text-white"
               />
@@ -43,7 +45,7 @@ function LogIn() {
 
             <div className="flex flex-col gap-1">
               <label className="text-xs font-semibold uppercase tracking-wider text-[#bc5f13] ml-1">
-                Enter the password
+                {t("login_password_label", "Enter the password")}
               </label>
               <input
                 type="password"
@@ -59,7 +61,7 @@ function LogIn() {
               type="submit"
               className="mt-2 bg-[#bc5f13] text-white py-5 rounded-3xl font-medium text-lg hover:bg-[#a04e0e] transition-all duration-300 shadow-lg shadow-orange-700/20 active:scale-95 w-full"
             >
-              LOG IN
+              {t("login_btn", "LOG IN")}
             </button>
           </div>
         </form>

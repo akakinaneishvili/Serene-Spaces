@@ -1,18 +1,21 @@
 import { useEffect, useState } from "react";
 import { API_URLN } from "../config";
+import { useTranslation } from "react-i18next";
 
 function OurPhilosophy() {
   const [info, setinfo] = useState([]);
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     const getOurPhilosophy = async () => {
       const response = await fetch(API_URLN);
       const result = await response.json();
-      setinfo(result.OurPhilosophy);
+      const isGeorgian = i18n.language.toUpperCase() === "KA";
+      setinfo(isGeorgian ? result.OurPhilosophy_KA : result.OurPhilosophy);
     };
 
     getOurPhilosophy();
-  }, []);
+  }, [i18n.language]);
 
   return (
     <>

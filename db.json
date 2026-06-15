@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "firstname": "baqari",
+      "firstname": "gela",
       "lastname": "gelashvili",
       "email": "imnadzenias@itvet.ge",
       "phone": "574334335",
@@ -28,6 +28,5 @@
       "id": "6Quszsf7mbo"
     }
   ],
-
   "$schema": "./node_modules/json-server/schema.json"
 }

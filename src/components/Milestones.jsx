@@ -1,17 +1,21 @@
 import { useEffect, useState } from "react";
 import { API_URLN } from "../config";
+import { useTranslation } from "react-i18next";
 
 function Milestones() {
   const [info, setinfo] = useState([]);
+  const { i18n } = useTranslation();
 
   useEffect(() => {
     const getMilestones = async () => {
       const response = await fetch(API_URLN);
       const result = await response.json();
-      setinfo(result.milestones);
+
+      const isGeorgian = i18n.language.toUpperCase() === "KA";
+      setinfo(isGeorgian ? result.milestones_KA : result.milestones);
     };
     getMilestones();
-  }, []);
+  }, [i18n.language]);
 
   return (
     <>
